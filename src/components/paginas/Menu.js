@@ -36,7 +36,7 @@ const Menu = () => {
         to="/nuevo-platillo"
         className="bg-blue-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold"
       >
-        Agregar Platooo
+        Agregar Plato
       </Link>
       {platillos.map((platillo) => (
         <Platillo key={platillo.id} platillo={platillo} />
