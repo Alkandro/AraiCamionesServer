@@ -1,5 +1,6 @@
 import React, { useContext, useRef } from "react";
 import { FirebaseContext } from "../../../firebase";
+import { FaTrash } from 'react-icons/fa';
 
 const Matsushima2 = ({ platillo }) => {
   //Existencia ref para acceder al valor directamente
@@ -19,6 +20,15 @@ const Matsushima2 = ({ platillo }) => {
       firebase.db.collection("matsushima").doc(id).update({
         existencia,
       });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+   // Eliminar pedido de Firebase
+   const eliminarPedido = () => {
+    try {
+      firebase.db.collection("matsushima").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -59,6 +69,15 @@ const Matsushima2 = ({ platillo }) => {
               Precio: {""}
               <span className="text-gray-700 font-bold">¥{precio}</span>
             </p>
+
+            <button
+              onClick={eliminarPedido}
+              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center"
+            >
+              <FaTrash className="mr-2 text-xl" />
+              DELETE
+            </button>
+
           </div>
         </div>
       </div>

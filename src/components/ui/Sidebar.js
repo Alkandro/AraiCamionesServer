@@ -1,7 +1,11 @@
 import React from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
+  // Función para determinar las clases de `NavLink` basadas en si está activo
+  const getLinkClassName = ({ isActive }) => 
+    `p-4 ${isActive ? 'text-yellow-500 bg-gray-700' : 'text-gray-400'} block hover:bg-yellow-500 hover:text-gray-900`;
+
   return (
     <div className="md:w-2/5 xl:w-1/5 bg-gray-800">
       <div className="p-6">
@@ -13,38 +17,40 @@ const Sidebar = () => {
 
         <nav className="mt-10">
           <NavLink
-            className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900"
-            activeClassName="text-yellow-500"
-            exact={true}
+            className={getLinkClassName}
+            end
             to="/matsushima"
           >
             Matsushima
           </NavLink>
 
           <NavLink
-            className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900"
-            activeClassName="text-yellow-500"
-            exact={true}
+            className={getLinkClassName}
+            end
             to="/tomaoka"
           >
             Tomaoka
           </NavLink>
+
+          <NavLink
+            className={getLinkClassName}
+            end
+            to="/hoshino"
+          >
+            Hoshino
+          </NavLink>
          
           <NavLink
-            className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900"
-            activeClassName="text-yellow-500"
-            exact={true}
+            className={getLinkClassName}
+            end
             to="/menu"
           >
             Menu
           </NavLink>
          
-         
-         
           <NavLink
-            className="p-1 text-gray-400 block hover:bg-yellow-500 hover:text-gray-900"
-            activeClassName="text-yellow-500"
-            end={true}
+            className={getLinkClassName}
+            end
             to="/"
           >
             Ordenes
@@ -54,40 +60,5 @@ const Sidebar = () => {
     </div>
   );
 };
+
 export default Sidebar;
-
-// import React from "react";
-// import { NavLink, useLocation } from "react-router-dom";
-
-// const Sidebar = () => {
-//   const actualLocation = useLocation().pathname;
-//   const locations = [
-//     { to: "/", name: "Ordenes" },
-//     { to: "/menu", name: "Menu" },
-//   ];
-
-//   return (
-//     <div className="md:w-2/5 xl:w-1/5 bg-gray-800">
-//       <div className="p-6">
-//         <p className="uppercase text-white text-2xl tracking-wide text-center font-bold">
-//           RestaurantApp
-//         </p>
-
-//         <p className="mt-3 text-gray-600">Administrador del restaurant:</p>
-
-//         <nav>
-//           {locations.map((value, index) => (
-//             <NavLink
-//               className={value.to === actualLocation ? "text-yellow-400" : null}
-//               end={index}
-//               to={value.to}
-//             >
-//               {value.name}
-//             </NavLink>
-//           ))}
-//         </nav>
-//       </div>
-//     </div>
-//   );
-// };
-// export default Sidebar;

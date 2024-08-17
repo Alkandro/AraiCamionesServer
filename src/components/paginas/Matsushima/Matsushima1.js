@@ -14,10 +14,19 @@ const Matsushima1 = () => {
   // Context con las operaciones de firebase
   const { firebase } = useContext(FirebaseContext);
 
-  //console.log(firebase);
-
   // Hook para redireccionar
   const navigate = useNavigate();
+
+  // Orden para los días de la semana
+  const categoria = {
+    lunes: 0,
+    martes: 1,
+    miercoles: 2,
+    jueves: 3,
+    viernes: 4,
+    sabado: 5,
+    domingo: 6,
+  };
 
   // validación y leer los datos del formulario
   const formik = useFormik({
@@ -44,6 +53,7 @@ const Matsushima1 = () => {
       try {
         platillo.existencia = true;
         platillo.imagen = urlimagen;
+        platillo.orden = categoria[platillo.categoria.toLowerCase()]; // Convertir la categoría a minúsculas
 
         firebase.db.collection("matsushima").add(platillo);
 
@@ -85,7 +95,7 @@ const Matsushima1 = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-light mb-4">Agregar Plato</h1>
+      <h1 className="text-3xl font-light mb-4">Matsushima</h1>
 
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
@@ -162,13 +172,13 @@ const Matsushima1 = () => {
                 onBlur={formik.handleBlur}
               >
                 <option value="">-- Seleccione --</option>
-                <option value="almuerzo">Almuerzo</option>
-                <option value="acompañamiento">Acompañamiento</option>
-                <option value="bebida">Bebidas</option>
-                <option value="cena">Cena</option>
-                <option value="desayuno">Desayuno</option>
-                <option value="ensalada">Ensalada</option>
-                <option value="postre">Postre</option>
+                <option value="lunes">Lunes</option>
+                <option value="martes">Martes</option>
+                <option value="miercoles">Miércoles</option>
+                <option value="jueves">Jueves</option>
+                <option value="viernes">Viernes</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option>
               </select>
             </div>
 

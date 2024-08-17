@@ -1,8 +1,8 @@
 import React, { useContext, useRef } from "react";
 import { FirebaseContext } from "../../../firebase";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
 
-const Tomaoka2 = ({ platillo }) => {
+const Hoshino2 = ({ platillo }) => {
   //Existencia ref para acceder al valor directamente
   const existenciaRef = useRef(platillo.existencia);
 
@@ -17,7 +17,7 @@ const Tomaoka2 = ({ platillo }) => {
   const actualizarDisponibilidad = () => {
     const existencia = existenciaRef.current.value === "true";
     try {
-      firebase.db.collection("tomaoka").doc(id).update({
+      firebase.db.collection("hoshino").doc(id).update({
         existencia,
       });
     } catch (error) {
@@ -25,10 +25,10 @@ const Tomaoka2 = ({ platillo }) => {
     }
   };
 
-   // Eliminar pedido de Firebase
-   const eliminarPedido = () => {
+  // Eliminar pedido de Firebase
+  const eliminarPedido = () => {
     try {
-      firebase.db.collection("tomaoka").doc(id).delete();
+      firebase.db.collection("hoshino").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -41,7 +41,7 @@ const Tomaoka2 = ({ platillo }) => {
           <div className="lg:w-5/12 xl:w-3/12">
             <img src={imagen} alt="imagen platillo" />
 
-            <div className="sm:flex sm:-mx-2 pl-2">
+            <div className="sm:flex sm:-mx-2 pl-2">          
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
                 <select
@@ -77,11 +77,10 @@ const Tomaoka2 = ({ platillo }) => {
               <FaTrash className="mr-2 text-xl" />
               DELETE
             </button>
-
           </div>
         </div>
       </div>
     </div>
   );
 };
-export default Tomaoka2;
+export default Hoshino2;

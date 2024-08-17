@@ -34,9 +34,9 @@ const Tomaoka = () => {
       <h1 className="text-3xl font-light mb-4">Tomaoka</h1>
       <Link
         to="/tomaoka1"
-        className="bg-blue-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold"
+        className="bg-gray-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold"
       >
-        Agregar Pedido
+        Nuevo Pedido
       </Link>
       {platillos.map((platillo) => (
         <Tomaoka2 key={platillo.id} platillo={platillo} />

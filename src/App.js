@@ -11,6 +11,8 @@ import Matsushima from "./components/paginas/Matsushima/Matsushima";
 import Matsushima1 from "./components/paginas/Matsushima/Matsushima1";
 import Tomaoka from "./components/paginas/Tomaoka/Tomaoka";
 import Tomaoka1 from "./components/paginas/Tomaoka/Tomaoka1";
+import Hoshino from "./components/paginas/Hoshino/Hoshino";
+import Hoshino1 from "./components/paginas/Hoshino/Hoshino1";
 
 
 function App() {
@@ -28,9 +30,11 @@ function App() {
             <Route path="/menu" element={<Menu />} />
             <Route path="/matsushima" element={<Matsushima />} />
             <Route path="/tomaoka" element={<Tomaoka />} />
+            <Route path="/hoshino" element={<Hoshino />} />
             <Route path="/nuevo-platillo" element={<NuevoPlatillo />} />
             <Route path="/matsushima1" element={<Matsushima1 />} />
             <Route path="/tomaoka1" element={<Tomaoka1 />} />
+            <Route path="/hoshino1" element={<Hoshino1 />} />
             
           </Routes>
         </div>
