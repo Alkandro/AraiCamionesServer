@@ -18,7 +18,7 @@ const Tomaoka1 = () => {
   const navigate = useNavigate();
 
   // Orden para los días de la semana
-  const dia= {
+  const categoria = {
     lunes: 0,
     martes: 1,
     miercoles: 2,
@@ -53,7 +53,7 @@ const Tomaoka1 = () => {
       try {
         platillo.existencia = true;
         platillo.imagen = urlimagen;
-        platillo.orden = dia[platillo.categoria.toLowerCase()]; // Convertir la categoría a minúsculas
+        platillo.orden = categoria[platillo.categoria.toLowerCase()]; // Convertir la categoría a minúsculas
 
         firebase.db.collection("tomaoka").add(platillo);
 

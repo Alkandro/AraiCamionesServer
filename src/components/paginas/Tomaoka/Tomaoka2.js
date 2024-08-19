@@ -1,32 +1,28 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../firebase";
-import { FaTrash } from 'react-icons/fa';
+import { FaTrash } from "react-icons/fa";
 
 const Tomaoka2 = ({ platillo }) => {
-  //Existencia ref para acceder al valor directamente
   const existenciaRef = useRef(platillo.existencia);
-
-  //contex de firebase para cambiar el la BD
   const { firebase } = useContext(FirebaseContext);
+  const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
 
-  const { id, nombre, imagen, existencia, categoria, precio, descripcion } =
-    platillo;
-
-  //modificar el estado del platillo en firebase
+  // Estado para manejar el color basado en la disponibilidad
+  const [disponibilidad, setDisponibilidad] = useState(existencia);
 
   const actualizarDisponibilidad = () => {
-    const existencia = existenciaRef.current.value === "true";
+    const nuevaExistencia = existenciaRef.current.value === "true";
+    setDisponibilidad(nuevaExistencia);
     try {
       firebase.db.collection("tomaoka").doc(id).update({
-        existencia,
+        existencia: nuevaExistencia,
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-   // Eliminar pedido de Firebase
-   const eliminarPedido = () => {
+  const eliminarPedido = () => {
     try {
       firebase.db.collection("tomaoka").doc(id).delete();
     } catch (error) {
@@ -41,14 +37,16 @@ const Tomaoka2 = ({ platillo }) => {
           <div className="lg:w-5/12 xl:w-3/12">
             <img src={imagen} alt="imagen platillo" />
 
-            <div className="sm:flex sm:-mx-2 pl-2">
+            <div className="sm:flex sm:-mx-2 pl-2">          
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
                 <select
-                  className=" bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${
+                    disponibilidad ? "text-blue-600" : "text-red-600"
+                  }`}
                   value={existencia}
                   ref={existenciaRef}
-                  onChange={() => actualizarDisponibilidad()}
+                  onChange={actualizarDisponibilidad}
                 >
                   <option value="true">Disponible</option>
                   <option value="false">No Disponible</option>
@@ -77,11 +75,12 @@ const Tomaoka2 = ({ platillo }) => {
               <FaTrash className="mr-2 text-xl" />
               DELETE
             </button>
-
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default Tomaoka2;
+

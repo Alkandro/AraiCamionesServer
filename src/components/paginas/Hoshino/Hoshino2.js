@@ -1,34 +1,49 @@
-import React, { useContext, useRef } from "react";
+import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../firebase";
-import { FaTrash } from "react-icons/fa";
+import { FaTrash, FaEdit } from "react-icons/fa";
 
 const Hoshino2 = ({ platillo }) => {
-  //Existencia ref para acceder al valor directamente
   const existenciaRef = useRef(platillo.existencia);
-
-  //contex de firebase para cambiar el la BD
   const { firebase } = useContext(FirebaseContext);
+  const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
 
-  const { id, nombre, imagen, existencia, categoria, precio, descripcion } =
-    platillo;
-
-  //modificar el estado del platillo en firebase
+  // Estado para manejar el color basado en la disponibilidad
+  const [disponibilidad, setDisponibilidad] = useState(existencia);
+  const [editando, setEditando] = useState(false);
+  const [nuevoNombre, setNuevoNombre] = useState(nombre);
+  const [nuevaCategoria, setNuevaCategoria] = useState(categoria);
+  const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
+  const [nuevoPrecio, setNuevoPrecio] = useState(precio);
 
   const actualizarDisponibilidad = () => {
-    const existencia = existenciaRef.current.value === "true";
+    const nuevaExistencia = existenciaRef.current.value === "true";
+    setDisponibilidad(nuevaExistencia);
     try {
       firebase.db.collection("hoshino").doc(id).update({
-        existencia,
+        existencia: nuevaExistencia,
       });
     } catch (error) {
       console.log(error);
     }
   };
 
-  // Eliminar pedido de Firebase
   const eliminarPedido = () => {
     try {
       firebase.db.collection("hoshino").doc(id).delete();
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  const actualizarPlatillo = () => {
+    try {
+      firebase.db.collection("hoshino").doc(id).update({
+        nombre: nuevoNombre,
+        categoria: nuevaCategoria,
+        descripcion: nuevaDescripcion,
+        precio: nuevoPrecio,
+      });
+      setEditando(false);
     } catch (error) {
       console.log(error);
     }
@@ -41,14 +56,16 @@ const Hoshino2 = ({ platillo }) => {
           <div className="lg:w-5/12 xl:w-3/12">
             <img src={imagen} alt="imagen platillo" />
 
-            <div className="sm:flex sm:-mx-2 pl-2">          
+            <div className="sm:flex sm:-mx-2 pl-2">
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
                 <select
-                  className=" bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline"
+                  className={`bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${
+                    disponibilidad ? "text-blue-600" : "text-red-600"
+                  }`}
                   value={existencia}
                   ref={existenciaRef}
-                  onChange={() => actualizarDisponibilidad()}
+                  onChange={actualizarDisponibilidad}
                 >
                   <option value="true">Disponible</option>
                   <option value="false">No Disponible</option>
@@ -57,30 +74,98 @@ const Hoshino2 = ({ platillo }) => {
             </div>
           </div>
           <div className="lg:w-7/12 xl:w-9/12 pl-9">
-            <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre}</p>
-            <p className="text-gray-600 mb-4">
-              Categoria: {""}
-              <span className="text-gray-700 font-bold">
-                {categoria.toUpperCase()}
-              </span>
-            </p>
-            <p className="text-gray-600 mb-4">{descripcion}</p>
-            <p className="text-gray-600 mb-4">
-              Precio: {""}
-              <span className="text-gray-700 font-bold">¥{precio}</span>
-            </p>
+            {editando ? (
+              <div>
+                <input
+                  type="text"
+                  className="mb-2 p-3 border border-gray-300 rounded"
+                  value={nuevoNombre}
+                  onChange={(e) => setNuevoNombre(e.target.value)}
+                />
+                <select
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaCategoria}
+                  onChange={(e) => setNuevaCategoria(e.target.value)}
+                >
+                  <option value="">-- Seleccione --</option>
+                  <option value="lunes">Lunes</option>
+                  <option value="martes">Martes</option>
+                  <option value="miercoles">Miércoles</option>
+                  <option value="jueves">Jueves</option>
+                  <option value="viernes">Viernes</option>
+                  <option value="sabado">Sábado</option>
+                  <option value="domingo">Domingo</option>
+                </select>
+                <textarea
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaDescripcion}
+                  onChange={(e) => setNuevaDescripcion(e.target.value)}
+                ></textarea>
+                <input
+                  type="number"
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevoPrecio}
+                  onChange={(e) => setNuevoPrecio(e.target.value)}
+                />
+               
+              </div>
+            ) : (
+              <div>
+                <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre}</p>
+                <p className="text-gray-600 mb-4">
+                  Categoria: {""}
+                  <span className="text-gray-700 font-bold">
+                    {categoria.toUpperCase()}
+                  </span>
+                </p>
+                <p className="text-gray-600 mb-4">{descripcion}</p>
+                <p className="text-gray-600 mb-4">
+                  Precio: {""}
+                  <span className="text-gray-700 font-bold">¥{precio}</span>
+                </p>
+              </div>
+            )}
 
-            <button
-              onClick={eliminarPedido}
-              className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center"
-            >
-              <FaTrash className="mr-2 text-xl" />
-              DELETE
-            </button>
+            {/* Botones Save y Cancel */}
+            {editando && (
+              <div className="flex justify-end space-x-4 mb-4">
+                <button
+                  onClick={actualizarPlatillo}
+                  className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Save
+                </button>
+                <button
+                  onClick={() => setEditando(false)}
+                  className="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded"
+                >
+                  Cancel
+                </button>
+              </div>
+            )}
+
+            {/* Botones Delete y Edit */}
+            <div className={`flex justify-end space-x-4 ${editando ? "mt-4" : ""}`}>
+              <button
+                onClick={eliminarPedido}
+                className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center"
+              >
+                <FaTrash className="mr-2 text-xl" />
+                DELETE
+              </button>
+              <button
+                onClick={() => setEditando(true)}
+                className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded flex items-center"
+              >
+                <FaEdit className="mr-2 text-xl" />
+                EDIT
+              </button>
+            </div>
           </div>
         </div>
       </div>
     </div>
   );
 };
+
 export default Hoshino2;

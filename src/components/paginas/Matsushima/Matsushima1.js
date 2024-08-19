@@ -6,12 +6,12 @@ import { useNavigate } from "react-router-dom";
 import FileUploader from "react-firebase-file-uploader";
 
 const Matsushima1 = () => {
-  // state para las imagenes
+  // Estado para las imágenes
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
 
-  // Context con las operaciones de firebase
+  // Context con las operaciones de Firebase
   const { firebase } = useContext(FirebaseContext);
 
   // Hook para redireccionar
@@ -28,7 +28,7 @@ const Matsushima1 = () => {
     domingo: 6,
   };
 
-  // validación y leer los datos del formulario
+  // Validación y manejo del formulario
   const formik = useFormik({
     initialValues: {
       nombre: "",
@@ -65,7 +65,7 @@ const Matsushima1 = () => {
     },
   });
 
-  // Todo sobre las imagenes
+  // Manejo de imágenes
   const handleUploadStart = () => {
     guardarProgreso(0);
     guardarSubiendo(true);
@@ -78,7 +78,6 @@ const Matsushima1 = () => {
     guardarProgreso(100);
     guardarSubiendo(false);
 
-    // Almacenar la URL de destino
     const url = await firebase.storage
       .ref("matsushima")
       .child(nombre)
@@ -159,13 +158,13 @@ const Matsushima1 = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="nombre"
+                htmlFor="categoria"
               >
                 Categoría
               </label>
               <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="precio"
+                id="categoria"
                 name="categoria"
                 value={formik.values.categoria}
                 onChange={formik.handleChange}
