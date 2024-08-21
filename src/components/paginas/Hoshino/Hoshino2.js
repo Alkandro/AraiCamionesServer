@@ -14,6 +14,7 @@ const Hoshino2 = ({ platillo }) => {
   const [nuevaCategoria, setNuevaCategoria] = useState(categoria);
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
   const [nuevoPrecio, setNuevoPrecio] = useState(precio);
+  const [nuevaImagen, setNuevaImagen] = useState(null); // Estado para la nueva imagen
 
   const actualizarDisponibilidad = () => {
     const nuevaExistencia = existenciaRef.current.value === "true";
@@ -35,17 +36,36 @@ const Hoshino2 = ({ platillo }) => {
     }
   };
 
-  const actualizarPlatillo = () => {
+  const actualizarPlatillo = async () => {
     try {
-      firebase.db.collection("hoshino").doc(id).update({
+      let nuevaUrlImagen = imagen; // Usar la URL existente como predeterminada
+
+      // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
+      if (nuevaImagen) {
+        const storageRef = firebase.storage.ref();
+        const imagenRef = storageRef.child(`hoshino/${nuevaImagen.name}`);
+        await imagenRef.put(nuevaImagen);
+        nuevaUrlImagen = await imagenRef.getDownloadURL();
+      }
+
+      // Actualizar el documento en la colección de Firebase
+      await firebase.db.collection("hoshino").doc(id).update({
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
         precio: nuevoPrecio,
+        imagen: nuevaUrlImagen,
       });
+
       setEditando(false);
     } catch (error) {
       console.log(error);
+    }
+  };
+
+  const handleImageChange = (e) => {
+    if (e.target.files.length > 0) {
+      setNuevaImagen(e.target.files[0]);
     }
   };
 
@@ -107,6 +127,14 @@ const Hoshino2 = ({ platillo }) => {
                   value={nuevoPrecio}
                   onChange={(e) => setNuevoPrecio(e.target.value)}
                 />
+                
+                {/* Campo para seleccionar una nueva imagen */}
+                <input
+                  type="file"
+                  className="mb-4 p-3 border border-gray-300 rounded w-full"
+                  onChange={handleImageChange}
+                />
+
                
               </div>
             ) : (
@@ -169,3 +197,4 @@ const Hoshino2 = ({ platillo }) => {
 };
 
 export default Hoshino2;
+
