@@ -19,13 +19,13 @@ const Tomaoka1 = () => {
 
   // Orden para los días de la semana
   const categoria = {
-    lunes: 0,
-    martes: 1,
-    miercoles: 2,
-    jueves: 3,
-    viernes: 4,
-    sabado: 5,
-    domingo: 6,
+    lunes: "lunes",
+    martes: "martes",
+    miercoles: "miercoles",
+    jueves: "jueves",
+    viernes: "viernes",
+    sabado: "sabado",
+    domingo: "domingo",
   };
 
   // Validación y manejo del formulario
