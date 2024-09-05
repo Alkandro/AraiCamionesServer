@@ -33,7 +33,7 @@ const Hoshino1 = () => {
     initialValues: {
       nombre: "",
       precio: "",
-      categoria: "",
+      categoria: "lunes",
       imagen: "",
       descripcion: "",
     },
@@ -44,7 +44,7 @@ const Hoshino1 = () => {
       precio: Yup.number()
         .min(1, "Debes agregar un número")
         .required("El Precio es obligatorio"),
-      categoria: Yup.string().required("La categoría es obligatoria"),
+      // categoria: Yup.string().required("La categoría es obligatoria"),
       descripcion: Yup.string()
         .min(10, "La descripción debe ser más larga")
         .required("La descripción es obligatoria"),
@@ -170,14 +170,14 @@ const Hoshino1 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                <option value="">-- Seleccione --</option>
+                {/* <option value="">-- Seleccione --</option> */}
                 <option value="lunes">Lunes</option>
-                <option value="martes">Martes</option>
+                {/* <option value="martes">Martes</option>
                 <option value="miercoles">Miércoles</option>
                 <option value="jueves">Jueves</option>
                 <option value="viernes">Viernes</option>
                 <option value="sabado">Sábado</option>
-                <option value="domingo">Domingo</option>
+                <option value="domingo">Domingo</option> */}
               </select>
             </div>
 
