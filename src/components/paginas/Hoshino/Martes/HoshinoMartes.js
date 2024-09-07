@@ -1,9 +1,9 @@
 import React, { useState, useEffect, useContext } from "react";
 import { Link } from "react-router-dom";
-import { FirebaseContext } from "../../../firebase";
-import Hoshino2 from "./Hoshino2";
+import { FirebaseContext } from "../../../../firebase";
+import Hoshino2Martes from "./Hoshino2Martes";
 
-const Hoshino = () => {
+const HoshinoMartes = () => {
   //Definir el state para los platillos
   const [platillos, guardarPlatillos] = useState([]);
 
@@ -12,7 +12,7 @@ const Hoshino = () => {
   //Consultar los datos al cargar
   useEffect(() => {
     const obtenerPlatillos = () => {
-      firebase.db.collection("hoshino").onSnapshot(manejarSnapshot);
+      firebase.db.collection("hoshinoMartes").onSnapshot(manejarSnapshot);
     };
     obtenerPlatillos();
   }, []);
@@ -31,17 +31,17 @@ const Hoshino = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-light mb-4">Hoshino</h1>
+      <h1 className="text-3xl font-light mb-4">Hoshino Martes</h1>
       <Link
-        to="/hoshino1"
+        to="/hoshino1Martes"
         className="bg-gray-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold"
       >
       Nuevo Pedido
       </Link>
       {platillos.map((platillo) => (
-        <Hoshino2 key={platillo.id} platillo={platillo} />
+        <Hoshino2Martes key={platillo.id} platillo={platillo} />
       ))}
     </>
   );
 };
-export default Hoshino;
+export default HoshinoMartes;

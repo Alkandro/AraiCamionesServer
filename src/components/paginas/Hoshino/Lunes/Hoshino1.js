@@ -1,7 +1,8 @@
+//Este es el archivo para agregar pedidos
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { FirebaseContext } from "../../../firebase";
+import { FirebaseContext } from "../../../../firebase";
 import { useNavigate } from "react-router-dom";
 import FileUploader from "react-firebase-file-uploader";
 
@@ -41,9 +42,9 @@ const Hoshino1 = () => {
       nombre: Yup.string()
         .min(3, "Los Platillos deben tener al menos 3 caracteres")
         .required("El Nombre del platillo es obligatorio"),
-      precio: Yup.number()
-        .min(1, "Debes agregar un número")
-        .required("El Precio es obligatorio"),
+      precio: Yup.string()
+      .matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "La hora debe estar en formato HH:mm")
+      .required("La hora es obligatoria"),
       // categoria: Yup.string().required("La categoría es obligatoria"),
       descripcion: Yup.string()
         .min(10, "La descripción debe ser más larga")
@@ -94,17 +95,58 @@ const Hoshino1 = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-light mb-4">Hoshino</h1>
+      <h1 className="text-3xl font-light mb-4">Hoshino Lunes</h1>
+
+      
 
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
           <form onSubmit={formik.handleSubmit}>
+
+          <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="categoria"
+              >
+                Dia de entrega
+              </label>
+              <select
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="categoria"
+                name="categoria"
+                value={formik.values.categoria}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              >
+                
+                <option value="lunes">Lunes</option>
+                {/* <option value="martes">Martes</option>
+                <option value="miercoles">Miércoles</option>
+                <option value="jueves">Jueves</option>
+                <option value="viernes">Viernes</option>
+                <option value="sabado">Sábado</option>
+                <option value="domingo">Domingo</option> */}
+              </select>
+            </div>
+
+            {formik.touched.categoria && formik.errors.categoria ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.categoria} </p>
+              </div>
+            ) : null}
+
+
+
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="nombre"
               >
-                Nombre
+                Nombre de la empresa
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -131,13 +173,13 @@ const Hoshino1 = () => {
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="precio"
               >
-                Precio
+                Horario de Salida
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="precio"
-                type="number"
-                placeholder="$20"
+                type="time"
+                placeholder="3:00"
                 min="0"
                 value={formik.values.precio}
                 onChange={formik.handleChange}
@@ -155,41 +197,7 @@ const Hoshino1 = () => {
               </div>
             ) : null}
 
-            <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="categoria"
-              >
-                Categoría
-              </label>
-              <select
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="categoria"
-                name="categoria"
-                value={formik.values.categoria}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-              >
-                {/* <option value="">-- Seleccione --</option> */}
-                <option value="lunes">Lunes</option>
-                {/* <option value="martes">Martes</option>
-                <option value="miercoles">Miércoles</option>
-                <option value="jueves">Jueves</option>
-                <option value="viernes">Viernes</option>
-                <option value="sabado">Sábado</option>
-                <option value="domingo">Domingo</option> */}
-              </select>
-            </div>
-
-            {formik.touched.categoria && formik.errors.categoria ? (
-              <div
-                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
-                role="alert"
-              >
-                <p className="font-bold">Hubo un error:</p>
-                <p>{formik.errors.categoria} </p>
-              </div>
-            ) : null}
+            
 
             <div className="mb-4">
               <label

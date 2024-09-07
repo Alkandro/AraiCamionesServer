@@ -1,8 +1,9 @@
+//Para modificar los datos
 import React, { useContext, useRef, useState } from "react";
-import { FirebaseContext } from "../../../firebase";
+import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
-const Hoshino2 = ({ platillo }) => {
+const Hoshino2Martes = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
   const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
@@ -20,7 +21,7 @@ const Hoshino2 = ({ platillo }) => {
     const nuevaExistencia = existenciaRef.current.value === "true";
     setDisponibilidad(nuevaExistencia);
     try {
-      firebase.db.collection("hoshino").doc(id).update({
+      firebase.db.collection("hoshinoMartes").doc(id).update({
         existencia: nuevaExistencia,
       });
     } catch (error) {
@@ -30,7 +31,7 @@ const Hoshino2 = ({ platillo }) => {
 
   const eliminarPedido = () => {
     try {
-      firebase.db.collection("hoshino").doc(id).delete();
+      firebase.db.collection("hoshinoMartes").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -43,13 +44,13 @@ const Hoshino2 = ({ platillo }) => {
       // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(`hoshino/${nuevaImagen.name}`);
+        const imagenRef = storageRef.child(`hoshinoMartes/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
       // Actualizar el documento en la colección de Firebase
-      await firebase.db.collection("hoshino").doc(id).update({
+      await firebase.db.collection("hoshinoMartes").doc(id).update({
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
@@ -149,7 +150,7 @@ const Hoshino2 = ({ platillo }) => {
                 <p className="text-gray-600 mb-4">{descripcion}</p>
                 <p className="text-gray-600 mb-4">
                   Horario: {""}
-                  <span className="text-gray-700 font-bold">¥{precio}</span>
+                  <span className="text-gray-700 font-bold">{precio}</span>
                 </p>
               </div>
             )}
@@ -196,7 +197,7 @@ const Hoshino2 = ({ platillo }) => {
   );
 };
 
-export default Hoshino2;
+export default Hoshino2Martes;
 
 
 
