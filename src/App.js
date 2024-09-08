@@ -12,10 +12,21 @@ import Matsushima1 from "./components/paginas/Matsushima/Matsushima1";
 import Tomaoka from "./components/paginas/Tomaoka/Tomaoka";
 import Tomaoka1 from "./components/paginas/Tomaoka/Tomaoka1";
 
+//HOSHINO
 import Hoshino from "./components/paginas/Hoshino/Lunes/Hoshino";
 import Hoshino1 from "./components/paginas/Hoshino/Lunes/Hoshino1";
 import HoshinoMartes from "./components/paginas/Hoshino/Martes/HoshinoMartes";
 import Hoshino1Martes from "./components/paginas/Hoshino/Martes/Hoshino1Martes";
+import HoshinoMiercoles from "./components/paginas/Hoshino/Miercoles/HoshinoMiercoles";
+import Hoshino1Miercoles from "./components/paginas/Hoshino/Miercoles/Hoshino1Miercoles";
+import HoshinoJueves from "./components/paginas/Hoshino/Jueves/HoshinoJueves";
+import Hoshino1Jueves from "./components/paginas/Hoshino/Jueves/Hoshino1Jueves";
+import HoshinoViernes from "./components/paginas/Hoshino/Viernes/HoshinoViernes";
+import Hoshino1Viernes from "./components/paginas/Hoshino/Viernes/Hoshino1Viernes";
+import HoshinoSabado from "./components/paginas/Hoshino/Sabado/HoshinoSabado";
+import Hoshino1Sabado from "./components/paginas/Hoshino/Sabado/Hoshino1Sabado";
+import HoshinoDomingo from "./components/paginas/Hoshino/Domingo/HoshinoDomingo";
+import Hoshino1Domingo from "./components/paginas/Hoshino/Domingo/Hoshino1Domingo";
 
 
 function App() {
@@ -35,11 +46,21 @@ function App() {
             <Route path="/tomaoka" element={<Tomaoka />} />
             
             
-
+            {/* //Hoshino */}
             <Route path="/hoshino" element={<Hoshino />} />
             <Route path="/hoshino1" element={<Hoshino1 />} />
             <Route path="/hoshinoMartes" element={<HoshinoMartes />} />
             <Route path="/hoshino1Martes" element={<Hoshino1Martes />} />
+            <Route path="/hoshinoMiercoles" element={<HoshinoMiercoles />} />
+            <Route path="/hoshino1Miercoles" element={<Hoshino1Miercoles />} />
+            <Route path="/hoshinoJueves" element={<HoshinoJueves />} />
+            <Route path="/hoshino1Jueves" element={<Hoshino1Jueves />} />
+            <Route path="/hoshinoViernes" element={<HoshinoViernes />} />
+            <Route path="/hoshino1Viernes" element={<Hoshino1Viernes />} />
+            <Route path="/hoshinoSabado" element={<HoshinoSabado/>} />
+            <Route path="/hoshino1Sabado" element={<Hoshino1Sabado />} />
+            <Route path="/hoshinoDomingo" element={<HoshinoDomingo />} />
+            <Route path="/hoshino1Domingo" element={<Hoshino1Domingo />} />
 
 
 
@@ -56,3 +77,5 @@ function App() {
 }
 
 export default App;
+
+

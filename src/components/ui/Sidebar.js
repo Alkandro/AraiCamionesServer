@@ -6,7 +6,9 @@ const Sidebar = () => {
 
   // Función para determinar las clases de `NavLink` basadas en si está activo
   const getLinkClassName = ({ isActive }) =>
-    `p-4 ${isActive ? "text-yellow-500 bg-gray-700" : "text-gray-400"} block hover:bg-yellow-500 hover:text-gray-900`;
+    `p-4 ${
+      isActive ? "text-blue-500 bg-green-500" : "text-gray-400"
+    } block hover:bg-yellow-500 hover:text-gray-900`;
 
   // Función para manejar el dropdown
   const toggleDropdown = () => {
@@ -38,6 +40,9 @@ const Sidebar = () => {
                 isDropdownOpen ? "text-yellow-500 bg-gray-700" : "text-gray-400"
               }`}
             >
+              <span style={{ marginRight: "6px" }} className="ml-2">
+                {isDropdownOpen ? "▼" : "▶"}
+              </span>
               Hoshino
             </button>
             {/* Dropdown */}
@@ -49,8 +54,20 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/hoshinoMartes">
                   Martes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/hoshino/opcion3">
-                  Miercoles
+                <NavLink className={getLinkClassName} end to="/hoshinoMiercoles">
+                  Miércoles
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/hoshinoJueves">
+                  Jueves
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/hoshinoViernes">
+                  Viernes
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/hoshinoSabado">
+                  Sabado
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/hoshinoDomingo">
+                  Domingo
                 </NavLink>
               </div>
             )}
@@ -61,7 +78,7 @@ const Sidebar = () => {
           </NavLink>
 
           <NavLink className={getLinkClassName} end to="/">
-            Ordenes
+            Órdenes
           </NavLink>
         </nav>
       </div>
@@ -70,4 +87,3 @@ const Sidebar = () => {
 };
 
 export default Sidebar;
-

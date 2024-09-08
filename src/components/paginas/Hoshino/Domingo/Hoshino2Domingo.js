@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
-const Hoshino2Martes = ({ platillo }) => {
+const Hoshino2Domingo = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
   const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
@@ -21,7 +21,7 @@ const Hoshino2Martes = ({ platillo }) => {
     const nuevaExistencia = existenciaRef.current.value === "true";
     setDisponibilidad(nuevaExistencia);
     try {
-      firebase.db.collection("hoshinoMartes").doc(id).update({
+      firebase.db.collection("hoshinoDomingo").doc(id).update({
         existencia: nuevaExistencia,
       });
     } catch (error) {
@@ -31,7 +31,7 @@ const Hoshino2Martes = ({ platillo }) => {
 
   const eliminarPedido = () => {
     try {
-      firebase.db.collection("hoshinoMartes").doc(id).delete();
+      firebase.db.collection("hoshinoDomingo").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -44,13 +44,13 @@ const Hoshino2Martes = ({ platillo }) => {
       // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(`hoshinoMartes/${nuevaImagen.name}`);
+        const imagenRef = storageRef.child(`hoshinoDomingo/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
       // Actualizar el documento en la colección de Firebase
-      await firebase.db.collection("hoshinoMartes").doc(id).update({
+      await firebase.db.collection("hoshinoDomingo").doc(id).update({
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
@@ -103,20 +103,7 @@ const Hoshino2Martes = ({ platillo }) => {
                   value={nuevoNombre}
                   onChange={(e) => setNuevoNombre(e.target.value)}
                 />
-                {/* <select
-                  className="mb-2 p-3 border border-gray-300 rounded w-full"
-                  value={nuevaCategoria}
-                  onChange={(e) => setNuevaCategoria(e.target.value)}
-                >
-                  <option value="">-- Seleccione --</option>
-                  <option value="lunes">Lunes</option>
-                  <option value="martes">Martes</option>
-                  <option value="miercoles">Miércoles</option>
-                  <option value="jueves">Jueves</option>
-                  <option value="viernes">Viernes</option>
-                  <option value="sabado">Sábado</option>
-                  <option value="domingo">Domingo</option>
-                </select> */}
+               
                 <textarea
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaDescripcion}
@@ -197,7 +184,7 @@ const Hoshino2Martes = ({ platillo }) => {
   );
 };
 
-export default Hoshino2Martes;
+export default Hoshino2Domingo;
 
 
 
