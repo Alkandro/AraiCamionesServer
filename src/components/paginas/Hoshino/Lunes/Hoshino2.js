@@ -102,6 +102,7 @@ const Hoshino2 = ({ platillo }) => {
                   className="mb-2 p-3 border border-gray-300 rounded"
                   value={nuevoNombre}
                   onChange={(e) => setNuevoNombre(e.target.value)}
+                  maxLength={26}
                 />
                 {/* <select
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
@@ -121,6 +122,7 @@ const Hoshino2 = ({ platillo }) => {
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaDescripcion}
                   onChange={(e) => setNuevaDescripcion(e.target.value)}
+                  maxLength={120}
                 ></textarea>
                 <input
                   type="time"

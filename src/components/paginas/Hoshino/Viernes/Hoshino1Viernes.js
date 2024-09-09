@@ -40,16 +40,15 @@ const Hoshino1Viernes = () => {
     validationSchema: Yup.object({
       nombre: Yup.string()
         .min(3, "Los Platillos deben tener al menos 3 caracteres")
+        .max(20, "Los platillos no pueden tener más de 20 caracteres") // máximo de 20 caracteres
         .required("El Nombre del platillo es obligatorio"),
       precio: Yup.string()
-        .matches(
-          /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
-          "La hora debe estar en formato HH:mm"
-        )
-        .required("La hora es obligatoria"),
+      .matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "La hora debe estar en formato HH:mm")
+      .required("La hora es obligatoria"),
       // categoria: Yup.string().required("La categoría es obligatoria"),
       descripcion: Yup.string()
         .min(10, "La descripción debe ser más larga")
+        .max(140, "La descripción no puede exceder los 150 caracteres")
         .required("La descripción es obligatoria"),
     }),
     onSubmit: (platillo) => {
