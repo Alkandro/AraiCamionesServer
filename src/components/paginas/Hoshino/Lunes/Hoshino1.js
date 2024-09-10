@@ -1,4 +1,4 @@
-//Este es el archivo para agregar pedidos
+// //Este es el archivo para agregar pedidos
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -6,11 +6,16 @@ import { FirebaseContext } from "../../../../firebase";
 import { useNavigate } from "react-router-dom";
 import FileUploader from "react-firebase-file-uploader";
 
+import imagenDefecto from "../../../../fotos2/autos.jpeg";
+
 const Hoshino1 = () => {
   // Estado para las imágenes
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
+
+  // URL de imagen por defecto
+  const imagenPorDefecto = imagenDefecto;
 
   // Context con las operaciones de Firebase
   const { firebase } = useContext(FirebaseContext);
@@ -41,12 +46,14 @@ const Hoshino1 = () => {
     validationSchema: Yup.object({
       nombre: Yup.string()
         .min(3, "Los Platillos deben tener al menos 3 caracteres")
-        .max(20, "Los platillos no pueden tener más de 20 caracteres") // máximo de 20 caracteres
+        .max(20, "Los platillos no pueden tener más de 20 caracteres")
         .required("El Nombre del platillo es obligatorio"),
       precio: Yup.string()
-      .matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "La hora debe estar en formato HH:mm")
-      .required("La hora es obligatoria"),
-      // categoria: Yup.string().required("La categoría es obligatoria"),
+        .matches(
+          /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
+          "La hora debe estar en formato HH:mm"
+        )
+        .required("La hora es obligatoria"),
       descripcion: Yup.string()
         .min(10, "La descripción debe ser más larga")
         .max(140, "La descripción no puede exceder los 150 caracteres")
@@ -55,8 +62,8 @@ const Hoshino1 = () => {
     onSubmit: (platillo) => {
       try {
         platillo.existencia = true;
-        platillo.imagen = urlimagen;
-        platillo.orden = categoria[platillo.categoria.toLowerCase()]; // Convertir la categoría a minúsculas
+        platillo.imagen = urlimagen || imagenPorDefecto; // Usa la imagen por defecto si no hay ninguna cargada
+        platillo.orden = categoria[platillo.categoria.toLowerCase()];
 
         firebase.db.collection("hoshino").add(platillo);
 
@@ -86,26 +93,20 @@ const Hoshino1 = () => {
       .child(nombre)
       .getDownloadURL();
 
-    console.log(url);
     guardarUrlimagen(url);
   };
   const handleProgress = (progreso) => {
     guardarProgreso(progreso);
-
-    console.log(progreso);
   };
 
   return (
     <>
       <h1 className="text-3xl font-light mb-4">Hoshino Lunes</h1>
 
-      
-
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
           <form onSubmit={formik.handleSubmit}>
-
-          <div className="mb-4">
+            <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="categoria"
@@ -120,14 +121,7 @@ const Hoshino1 = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                
                 <option value="lunes">Lunes</option>
-                {/* <option value="martes">Martes</option>
-                <option value="miercoles">Miércoles</option>
-                <option value="jueves">Jueves</option>
-                <option value="viernes">Viernes</option>
-                <option value="sabado">Sábado</option>
-                <option value="domingo">Domingo</option> */}
               </select>
             </div>
 
@@ -140,8 +134,6 @@ const Hoshino1 = () => {
                 <p>{formik.errors.categoria} </p>
               </div>
             ) : null}
-
-
 
             <div className="mb-4">
               <label
@@ -181,8 +173,6 @@ const Hoshino1 = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="precio"
                 type="time"
-                placeholder="3:00"
-                min="0"
                 value={formik.values.precio}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -198,8 +188,6 @@ const Hoshino1 = () => {
                 <p>{formik.errors.precio} </p>
               </div>
             ) : null}
-
-            
 
             <div className="mb-4">
               <label
@@ -238,6 +226,18 @@ const Hoshino1 = () => {
               </p>
             )}
 
+            {/* Mostrar la imagen subida o la imagen por defecto */}
+            <div className="mb-4">
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Vista previa de la imagen
+              </label>
+              <img
+                src={urlimagen || imagenPorDefecto} // Mostrar la imagen subida o la por defecto
+                alt="Imagen"
+                className="w-40 h-40 object-cover"
+              />
+            </div>
+
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
@@ -248,18 +248,10 @@ const Hoshino1 = () => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
                 id="descripcion"
-                placeholder="Descripción del Platillo"
+                placeholder="Descripción del platillo"
                 value={formik.values.descripcion}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
-                style={{
-                  overflow: "hidden",
-                  whiteSpace: "pre-wrap",
-                  wordBreak: "break-word",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3, // Limita el texto a 3 líneas
-                  WebkitBoxOrient: "vertical",
-                }}
               ></textarea>
             </div>
 

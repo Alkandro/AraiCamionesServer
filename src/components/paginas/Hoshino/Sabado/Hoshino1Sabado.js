@@ -243,6 +243,14 @@ const Hoshino1Sabado = () => {
                 value={formik.values.descripcion}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
+                style={{
+                  overflow: "hidden",
+                  whiteSpace: "pre-wrap",
+                  wordBreak: "break-word",
+                  display: "-webkit-box",
+                  WebkitLineClamp: 3, // Limita el texto a 3 líneas
+                  WebkitBoxOrient: "vertical",
+                }}
               ></textarea>
             </div>
 

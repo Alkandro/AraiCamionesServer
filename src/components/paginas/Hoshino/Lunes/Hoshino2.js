@@ -104,20 +104,7 @@ const Hoshino2 = ({ platillo }) => {
                   onChange={(e) => setNuevoNombre(e.target.value)}
                   maxLength={26}
                 />
-                {/* <select
-                  className="mb-2 p-3 border border-gray-300 rounded w-full"
-                  value={nuevaCategoria}
-                  onChange={(e) => setNuevaCategoria(e.target.value)}
-                >
-                  <option value="">-- Seleccione --</option>
-                  <option value="lunes">Lunes</option>
-                  <option value="martes">Martes</option>
-                  <option value="miercoles">Miércoles</option>
-                  <option value="jueves">Jueves</option>
-                  <option value="viernes">Viernes</option>
-                  <option value="sabado">Sábado</option>
-                  <option value="domingo">Domingo</option>
-                </select> */}
+               
                 <textarea
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaDescripcion}
