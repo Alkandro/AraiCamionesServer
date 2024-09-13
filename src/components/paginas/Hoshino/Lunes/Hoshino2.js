@@ -3,10 +3,11 @@ import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
+
 const Hoshino2 = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
-  const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
+  const { id, nombre, imagen, existencia, categoria, precio, descripcion, fecha } = platillo;
 
   // Estado para manejar el color basado en la disponibilidad
   const [disponibilidad, setDisponibilidad] = useState(existencia);
@@ -15,6 +16,7 @@ const Hoshino2 = ({ platillo }) => {
   const [nuevaCategoria, setNuevaCategoria] = useState(categoria);
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
   const [nuevoPrecio, setNuevoPrecio] = useState(precio);
+  const [nuevaFecha, setNuevaFecha] = useState(fecha);
   const [nuevaImagen, setNuevaImagen] = useState(null); // Estado para la nueva imagen
 
   const actualizarDisponibilidad = () => {
@@ -55,6 +57,7 @@ const Hoshino2 = ({ platillo }) => {
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
         precio: nuevoPrecio,
+        fecha: nuevaFecha,
         imagen: nuevaUrlImagen,
       });
 
@@ -117,6 +120,12 @@ const Hoshino2 = ({ platillo }) => {
                   value={nuevoPrecio}
                   onChange={(e) => setNuevoPrecio(e.target.value)}
                 />
+                 <input
+                  type="date"
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaFecha}
+                  onChange={(e) => setNuevaFecha(e.target.value)}
+                />
                 
                 {/* Campo para seleccionar una nueva imagen */}
                 <input
@@ -140,6 +149,10 @@ const Hoshino2 = ({ platillo }) => {
                 <p className="text-gray-600 mb-4">
                   Horario: {""}
                   <span className="text-gray-700 font-bold">{precio}</span>
+                </p>
+                <p className="text-gray-600 mb-4">
+                  Fecha: {""}
+                  <span className="text-gray-700 font-bold">{fecha}</span>
                 </p>
               </div>
             )}

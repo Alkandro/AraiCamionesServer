@@ -8,11 +8,35 @@ import FileUploader from "react-firebase-file-uploader";
 
 import imagenDefecto from "../../../../fotos2/autos.jpeg";
 
+
+import { parse, isDate } from 'date-fns';
+
 const Hoshino1 = () => {
   // Estado para las imágenes
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
+
+
+
+  // Función para transformar la cadena de fecha al formato correcto
+const parseDateString = (value, originalValue) => {
+  const parsedDate = parse(originalValue, 'dd/MM/yyyy', new Date());
+  return isDate(parsedDate) ? parsedDate : originalValue;
+};
+
+const validationSchema = Yup.object().shape({
+  fecha: Yup.date()
+    .transform(parseDateString)  // Transformar el string en un objeto Date
+    .required("La fecha es obligatoria")
+    .typeError("La fecha debe estar en formato DD/MM/YYYY"),
+});
+
+
+
+
+
+
 
   // URL de imagen por defecto
   const imagenPorDefecto = imagenDefecto;
@@ -39,6 +63,7 @@ const Hoshino1 = () => {
     initialValues: {
       nombre: "",
       precio: "",
+      fecha: "",
       categoria: "lunes",
       imagen: "",
       descripcion: "",
@@ -54,6 +79,12 @@ const Hoshino1 = () => {
           "La hora debe estar en formato HH:mm"
         )
         .required("La hora es obligatoria"),
+        fecha: Yup.date()
+    .required("La fecha es obligatoria")
+    
+    
+    .typeError("La fecha no es válida"), // Error si la fecha no tiene el formato correcto
+
       descripcion: Yup.string()
         .min(10, "La descripción debe ser más larga")
         .max(140, "La descripción no puede exceder los 150 caracteres")
@@ -159,6 +190,33 @@ const Hoshino1 = () => {
               >
                 <p className="font-bold">Hubo un error:</p>
                 <p>{formik.errors.nombre} </p>
+              </div>
+            ) : null}
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="fecha"
+              >
+                Fecha de Salida
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="fecha"
+                type="date"
+                value={formik.values.fecha}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+
+            {formik.touched.fecha && formik.errors.fecha ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.fecha} </p>
               </div>
             ) : null}
 
@@ -278,3 +336,5 @@ const Hoshino1 = () => {
 };
 
 export default Hoshino1;
+
+
