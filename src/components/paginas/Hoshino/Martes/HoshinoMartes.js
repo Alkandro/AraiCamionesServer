@@ -30,18 +30,21 @@ const HoshinoMartes = () => {
   }
 
   return (
-    <>
+    <div className="flex-1 overflow-y-auto p-6">
+      {" "}
+      {/* Scroll independiente */}
       <h1 className="text-3xl font-light mb-4">Hoshino Martes</h1>
       <Link
         to="/hoshino1Martes"
-        className="bg-gray-800 hover:bg-blue-700, inline-block mb-5 p-2 text-white uppercase font-bold"
+        className="bg-gray-800 hover:bg-blue-700 inline-block mb-5 p-2 text-white uppercase font-bold"
       >
-      Nuevo Pedido
+        Nuevo Pedido
       </Link>
       {platillos.map((platillo) => (
         <Hoshino2Martes key={platillo.id} platillo={platillo} />
       ))}
-    </>
+    </div>
   );
 };
+
 export default HoshinoMartes;

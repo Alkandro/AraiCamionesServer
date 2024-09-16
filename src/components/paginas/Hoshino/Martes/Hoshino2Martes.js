@@ -1,4 +1,4 @@
-//Para modificar los datos
+//para modificar los datos
 import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
@@ -6,7 +6,18 @@ import { FaTrash, FaEdit } from "react-icons/fa";
 const Hoshino2Martes = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
-  const { id, nombre, imagen, existencia, categoria, precio, descripcion } = platillo;
+  const {
+    id,
+    nombre,
+    imagen,
+    existencia,
+    categoria,
+    precio,
+    descripcion,
+    descripcion2,
+    fecha,
+    fecha2,
+  } = platillo;
 
   // Estado para manejar el color basado en la disponibilidad
   const [disponibilidad, setDisponibilidad] = useState(existencia);
@@ -14,7 +25,10 @@ const Hoshino2Martes = ({ platillo }) => {
   const [nuevoNombre, setNuevoNombre] = useState(nombre);
   const [nuevaCategoria, setNuevaCategoria] = useState(categoria);
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
+  const [nuevaDescripcion2, setNuevaDescripcion2] = useState(descripcion2);
   const [nuevoPrecio, setNuevoPrecio] = useState(precio);
+  const [nuevaFecha, setNuevaFecha] = useState(fecha);
+  const [nuevaFecha2, setNuevaFecha2] = useState(fecha2);
   const [nuevaImagen, setNuevaImagen] = useState(null); // Estado para la nueva imagen
 
   const actualizarDisponibilidad = () => {
@@ -54,7 +68,10 @@ const Hoshino2Martes = ({ platillo }) => {
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
+        descripcion2: nuevaDescripcion2,
         precio: nuevoPrecio,
+        fecha: nuevaFecha,
+        fecha2: nuevaFecha2,
         imagen: nuevaUrlImagen,
       });
 
@@ -102,25 +119,20 @@ const Hoshino2Martes = ({ platillo }) => {
                   className="mb-2 p-3 border border-gray-300 rounded"
                   value={nuevoNombre}
                   onChange={(e) => setNuevoNombre(e.target.value)}
+                  maxLength={26}
                 />
-                {/* <select
-                  className="mb-2 p-3 border border-gray-300 rounded w-full"
-                  value={nuevaCategoria}
-                  onChange={(e) => setNuevaCategoria(e.target.value)}
-                >
-                  <option value="">-- Seleccione --</option>
-                  <option value="lunes">Lunes</option>
-                  <option value="martes">Martes</option>
-                  <option value="miercoles">Miércoles</option>
-                  <option value="jueves">Jueves</option>
-                  <option value="viernes">Viernes</option>
-                  <option value="sabado">Sábado</option>
-                  <option value="domingo">Domingo</option>
-                </select> */}
+
                 <textarea
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaDescripcion}
                   onChange={(e) => setNuevaDescripcion(e.target.value)}
+                  maxLength={120}
+                ></textarea>
+                <textarea
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaDescripcion2}
+                  onChange={(e) => setNuevaDescripcion2(e.target.value)}
+                  maxLength={120}
                 ></textarea>
                 <input
                   type="time"
@@ -128,29 +140,59 @@ const Hoshino2Martes = ({ platillo }) => {
                   value={nuevoPrecio}
                   onChange={(e) => setNuevoPrecio(e.target.value)}
                 />
-                
+                <input
+                  type="date"
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaFecha}
+                  onChange={(e) => setNuevaFecha(e.target.value)}
+                />
+                <input
+                  type="date"
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaFecha2}
+                  onChange={(e) => setNuevaFecha2(e.target.value)}
+                />
+
                 {/* Campo para seleccionar una nueva imagen */}
                 <input
                   type="file"
                   className="mb-4 p-3 border border-gray-300 rounded w-full"
                   onChange={handleImageChange}
                 />
-
-               
               </div>
             ) : (
               <div>
-                <p className="font-bold text-2xl text-yellow-600 mb-4">{nombre}</p>
+                <p className="font-bold text-2xl text-yellow-600 mb-4">
+                  {nombre}
+                </p>
                 <p className="text-gray-600 mb-4">
                   Dia de entrega: {""}
                   <span className="text-gray-700 font-bold">
                     {categoria.toUpperCase()}
                   </span>
                 </p>
-                <p className="text-gray-600 mb-4">{descripcion}</p>
+                <p className="text-gray-600 mb-4">
+                  Lugar de carga: {""}
+                  <span className="text-gray-700 font-bold">{descripcion}</span>
+                </p>
+
+                <p className="text-gray-600 mb-4">
+                  Lugar de descarga: {""}
+                  <span className="text-gray-700 font-bold">
+                    {nuevaDescripcion2}
+                  </span>
+                </p>
                 <p className="text-gray-600 mb-4">
                   Horario: {""}
                   <span className="text-gray-700 font-bold">{precio}</span>
+                </p>
+                <p className="text-gray-600 mb-4">
+                  Fecha de carga: {""}
+                  <span className="text-gray-700 font-bold">{fecha}</span>
+                </p>
+                <p className="text-gray-600 mb-4">
+                  Fecha de descarga: {""}
+                  <span className="text-gray-700 font-bold">{fecha2}</span>
                 </p>
               </div>
             )}
@@ -174,7 +216,9 @@ const Hoshino2Martes = ({ platillo }) => {
             )}
 
             {/* Botones Delete y Edit */}
-            <div className={`flex justify-end space-x-4 ${editando ? "mt-4" : ""}`}>
+            <div
+              className={`flex justify-end space-x-4 ${editando ? "mt-4" : ""}`}
+            >
               <button
                 onClick={eliminarPedido}
                 className="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded flex items-center"
@@ -198,6 +242,3 @@ const Hoshino2Martes = ({ platillo }) => {
 };
 
 export default Hoshino2Martes;
-
-
-

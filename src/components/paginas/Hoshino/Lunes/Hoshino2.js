@@ -171,18 +171,27 @@ const Hoshino2 = ({ platillo }) => {
                     {categoria.toUpperCase()}
                   </span>
                 </p>
-                <p className="text-gray-600 mb-4">{descripcion}</p>
-                <p className="text-gray-600 mb-4">{nuevaDescripcion2}</p>
+                <p className="text-gray-600 mb-4">
+                  Lugar de carga: {""}
+                  <span className="text-gray-700 font-bold">{descripcion}</span>
+                </p>
+
+                <p className="text-gray-600 mb-4">
+                  Lugar de descarga: {""}
+                  <span className="text-gray-700 font-bold">
+                    {nuevaDescripcion2}
+                  </span>
+                </p>
                 <p className="text-gray-600 mb-4">
                   Horario: {""}
                   <span className="text-gray-700 font-bold">{precio}</span>
                 </p>
                 <p className="text-gray-600 mb-4">
-                  Fecha: {""}
+                  Fecha de carga: {""}
                   <span className="text-gray-700 font-bold">{fecha}</span>
                 </p>
                 <p className="text-gray-600 mb-4">
-                  Fecha2: {""}
+                  Fecha de descarga: {""}
                   <span className="text-gray-700 font-bold">{fecha2}</span>
                 </p>
               </div>

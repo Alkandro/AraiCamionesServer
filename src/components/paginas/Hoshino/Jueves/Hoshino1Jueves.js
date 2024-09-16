@@ -1,4 +1,4 @@
-//Este es el archivo para agregar pedidos
+// //Este es el archivo para agregar pedidos
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -6,11 +6,31 @@ import { FirebaseContext } from "../../../../firebase";
 import { useNavigate } from "react-router-dom";
 import FileUploader from "react-firebase-file-uploader";
 
+import imagenDefecto from "../../../../fotos2/autos.jpeg";
+
+import { parse, isDate } from "date-fns";
+
 const Hoshino1Jueves = () => {
   // Estado para las imágenes
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
+
+  // Función para transformar la cadena de fecha al formato correcto
+  const parseDateString = (value, originalValue) => {
+    const parsedDate = parse(originalValue, "dd/MM/yyyy", new Date());
+    return isDate(parsedDate) ? parsedDate : originalValue;
+  };
+
+  const validationSchema = Yup.object().shape({
+    fecha: Yup.date()
+      .transform(parseDateString) // Transformar el string en un objeto Date
+      .required("La fecha es obligatoria")
+      .typeError("La fecha debe estar en formato DD/MM/YYYY"),
+  });
+
+  // URL de imagen por defecto
+  const imagenPorDefecto = imagenDefecto;
 
   // Context con las operaciones de Firebase
   const { firebase } = useContext(FirebaseContext);
@@ -20,13 +40,13 @@ const Hoshino1Jueves = () => {
 
   // Orden para los días de la semana
   const categoria = {
-    
-    // martes: "martes",
-    // miercoles: "miercoles",
+    lunes: "lunes",
+    martes: "martes",
+    miercoles: "miercoles",
     jueves: "jueves",
-    // viernes: "viernes",
-    // sabado: "sabado",
-    // domingo: "domingo",
+    viernes: "viernes",
+    sabado: "sabado",
+    domingo: "domingo",
   };
 
   // Validación y manejo del formulario
@@ -34,29 +54,47 @@ const Hoshino1Jueves = () => {
     initialValues: {
       nombre: "",
       precio: "",
+      fecha: "",
+      fecha2: "",
       categoria: "jueves",
       imagen: "",
       descripcion: "",
+      descripcion2: "",
     },
     validationSchema: Yup.object({
       nombre: Yup.string()
         .min(3, "Los Platillos deben tener al menos 3 caracteres")
-        .max(20, "Los platillos no pueden tener más de 20 caracteres") // máximo de 20 caracteres
+        .max(20, "Los platillos no pueden tener más de 20 caracteres")
         .required("El Nombre del platillo es obligatorio"),
       precio: Yup.string()
-      .matches(/^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, "La hora debe estar en formato HH:mm")
-      .required("La hora es obligatoria"),
-      // categoria: Yup.string().required("La categoría es obligatoria"),
+        .matches(
+          /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
+          "La hora debe estar en formato HH:mm"
+        )
+        .required("La hora es obligatoria"),
+      fecha: Yup.date()
+        .required("La fecha es obligatoria")
+
+        .typeError("La fecha no es válida"), // Error si la fecha no tiene el formato correcto
+      fecha2: Yup.date()
+        .required("La fecha es obligatoria")
+
+        .typeError("La fecha no es válida"), // Error si la fecha no tiene el formato correcto
+
       descripcion: Yup.string()
-        .min(10, "La descripción debe ser más larga")
+        .min(1, "La descripción debe ser más larga")
+        .max(140, "La descripción no puede exceder los 150 caracteres")
+        .required("La descripción es obligatoria"),
+      descripcion2: Yup.string()
+        .min(1, "La descripción debe ser más larga")
         .max(140, "La descripción no puede exceder los 150 caracteres")
         .required("La descripción es obligatoria"),
     }),
     onSubmit: (platillo) => {
       try {
         platillo.existencia = true;
-        platillo.imagen = urlimagen;
-        platillo.orden = categoria[platillo.categoria.toLowerCase()]; // Convertir la categoría a minúsculas
+        platillo.imagen = urlimagen || imagenPorDefecto; // Usa la imagen por defecto si no hay ninguna cargada
+        platillo.orden = categoria[platillo.categoria.toLowerCase()];
 
         firebase.db.collection("hoshinoJueves").add(platillo);
 
@@ -86,13 +124,10 @@ const Hoshino1Jueves = () => {
       .child(nombre)
       .getDownloadURL();
 
-    console.log(url);
     guardarUrlimagen(url);
   };
   const handleProgress = (progreso) => {
     guardarProgreso(progreso);
-
-    console.log(progreso);
   };
 
   return (
@@ -102,13 +137,12 @@ const Hoshino1Jueves = () => {
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
           <form onSubmit={formik.handleSubmit}>
-
-          <div className="mb-4">
+            <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
                 htmlFor="categoria"
               >
-                Categoría
+                Dia de entrega
               </label>
               <select
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
@@ -118,14 +152,7 @@ const Hoshino1Jueves = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                {/* <option value="">-- Seleccione --</option>
-                <option value="lunes">Lunes</option> */}
-                {/* <option value="martes">Martes</option> */}
-                {/* <option value="miercoles">Miércoles</option> */}
                 <option value="jueves">Jueves</option>
-                {/* <option value="viernes">Viernes</option>
-                <option value="sabado">Sábado</option>
-                <option value="domingo">Domingo</option> */}
               </select>
             </div>
 
@@ -136,6 +163,33 @@ const Hoshino1Jueves = () => {
               >
                 <p className="font-bold">Hubo un error:</p>
                 <p>{formik.errors.categoria} </p>
+              </div>
+            ) : null}
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="precio"
+              >
+                Horario de Salida
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="precio"
+                type="time"
+                value={formik.values.precio}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+
+            {formik.touched.precio && formik.errors.precio ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.precio} </p>
               </div>
             ) : null}
 
@@ -169,33 +223,109 @@ const Hoshino1Jueves = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="precio"
+                htmlFor="fecha"
               >
-                Horario de Salida
+                Fecha de Salida
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="precio"
-                type="time"
-                placeholder="3:30"
-                min="0"
-                value={formik.values.precio}
+                id="fecha"
+                type="date"
+                value={formik.values.fecha}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
             </div>
 
-            {formik.touched.precio && formik.errors.precio ? (
+            {formik.touched.fecha && formik.errors.fecha ? (
               <div
                 className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
                 role="alert"
               >
                 <p className="font-bold">Hubo un error:</p>
-                <p>{formik.errors.precio} </p>
+                <p>{formik.errors.fecha} </p>
               </div>
             ) : null}
 
-           
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="descripcion"
+              >
+                Lugar de carga
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
+                id="descripcion"
+                placeholder="Descripción del platillo"
+                value={formik.values.descripcion}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              ></textarea>
+            </div>
+
+            {formik.touched.descripcion && formik.errors.descripcion ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.descripcion} </p>
+              </div>
+            ) : null}
+
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="fecha2"
+              >
+                Fecha de entrega
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="fecha2"
+                type="date"
+                value={formik.values.fecha2}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+
+            {formik.touched.fecha2 && formik.errors.fecha2 ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.fecha2} </p>
+              </div>
+            ) : null}
+            <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="descripcion2"
+              >
+                Lugar de descarga
+              </label>
+              <textarea
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
+                id="descripcion2"
+                placeholder="Descripción del platillo"
+                value={formik.values.descripcion2}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              ></textarea>
+            </div>
+
+            {formik.touched.descripcion2 && formik.errors.descripcion2 ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.descripcion2} </p>
+              </div>
+            ) : null}
 
             <div className="mb-4">
               <label
@@ -234,40 +364,17 @@ const Hoshino1Jueves = () => {
               </p>
             )}
 
+            {/* Mostrar la imagen subida o la imagen por defecto */}
             <div className="mb-4">
-              <label
-                className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="descripcion"
-              >
-                Descripción
+              <label className="block text-gray-700 text-sm font-bold mb-2">
+                Vista previa de la imagen
               </label>
-              <textarea
-                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
-                id="descripcion"
-                placeholder="Descripción del Platillo"
-                value={formik.values.descripcion}
-                onChange={formik.handleChange}
-                onBlur={formik.handleBlur}
-                style={{
-                  overflow: "hidden",
-                  whiteSpace: "pre-wrap",
-                  wordBreak: "break-word",
-                  display: "-webkit-box",
-                  WebkitLineClamp: 3, // Limita el texto a 3 líneas
-                  WebkitBoxOrient: "vertical",
-                }}
-              ></textarea>
+              <img
+                src={urlimagen || imagenPorDefecto} // Mostrar la imagen subida o la por defecto
+                alt="Imagen"
+                className="w-40 h-40 object-cover"
+              />
             </div>
-
-            {formik.touched.descripcion && formik.errors.descripcion ? (
-              <div
-                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
-                role="alert"
-              >
-                <p className="font-bold">Hubo un error:</p>
-                <p>{formik.errors.descripcion} </p>
-              </div>
-            ) : null}
 
             <input
               type="submit"
