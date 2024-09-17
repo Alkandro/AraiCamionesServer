@@ -204,7 +204,7 @@ const Hoshino1Martes = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="nombre"
                 type="text"
-                placeholder="Nombre Platillo"
+                placeholder="Empresa"
                 value={formik.values.nombre}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -257,7 +257,7 @@ const Hoshino1Martes = () => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
                 id="descripcion"
-                placeholder="Descripción del platillo"
+                placeholder="Direccion"
                 value={formik.values.descripcion}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -310,7 +310,7 @@ const Hoshino1Martes = () => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
                 id="descripcion2"
-                placeholder="Descripción del platillo"
+                placeholder="Direccion"
                 value={formik.values.descripcion2}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

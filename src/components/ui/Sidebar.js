@@ -2,18 +2,17 @@ import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 const Sidebar = () => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  // Estado separado para cada dropdown
+  const [isHoshinoOpen, setIsHoshinoOpen] = useState(false);
+  const [isMatsushimaOpen, setIsMatsushimaOpen] = useState(false);
+
+  // Funciones para alternar la visibilidad de cada dropdown
+  const toggleHoshinoDropdown = () => setIsHoshinoOpen(!isHoshinoOpen);
+  const toggleMatsushimaDropdown = () => setIsMatsushimaOpen(!isMatsushimaOpen);
 
   // Función para determinar las clases de `NavLink` basadas en si está activo
   const getLinkClassName = ({ isActive }) =>
-    `p-4 ${
-      isActive ? "text-blue-500 bg-green-500" : "text-gray-400"
-    } block hover:bg-yellow-500 hover:text-gray-900`;
-
-  // Función para manejar el dropdown
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
-  };
+    `p-4 ${isActive ? "text-blue-500 bg-green-500" : "text-gray-400"} block hover:bg-yellow-500 hover:text-gray-900`;
 
   return (
     <div className="md:w-2/5 xl:w-1/5 bg-gray-800">
@@ -22,31 +21,25 @@ const Sidebar = () => {
           株式会社 新井商運
         </p>
 
-        <p className="mt-3 text-gray-600">Administrador</p>
+        <p className="mt-3 text-gray-600 text-center">Administrador</p>
 
-        <nav className="mt-10">
-          <NavLink className={getLinkClassName} end to="/matsushima">
-            Matsushima
-          </NavLink>
+        <nav className="mt-1">
+         
 
-          <NavLink className={getLinkClassName} end to="/tomaoka">
-            Tomaoka
-          </NavLink>
-
+          {/* Hoshino Dropdown */}
           <div>
             <button
-              onClick={toggleDropdown}
-              className={`p-4 block hover:bg-yellow-500 hover:text-gray-900 ${
-                isDropdownOpen ? "text-yellow-500 bg-gray-700" : "text-gray-400"
+              onClick={toggleHoshinoDropdown}
+              className={`p-3 block hover:bg-yellow-500 hover:text-gray-900 ${
+                isHoshinoOpen ? "text-yellow-500 bg-gray-700" : "text-gray-400"
               }`}
             >
-              <span style={{ marginRight: "6px" }} className="ml-2">
-                {isDropdownOpen ? "▼" : "▶"}
+              <span style={{ marginRight: "12px" }} className="ml-2">
+                {isHoshinoOpen ? "▼" : "▶"}
               </span>
               Hoshino
             </button>
-            {/* Dropdown */}
-            {isDropdownOpen && (
+            {isHoshinoOpen && (
               <div className="pl-4">
                 <NavLink className={getLinkClassName} end to="/hoshino">
                   Lunes
@@ -64,7 +57,7 @@ const Sidebar = () => {
                   Viernes
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoSabado">
-                  Sabado
+                  Sábado
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoDomingo">
                   Domingo
@@ -73,8 +66,48 @@ const Sidebar = () => {
             )}
           </div>
 
+          {/* Matsushima Dropdown */}
+          <div>
+            <button
+              onClick={toggleMatsushimaDropdown}
+              className={`p-3 block hover:bg-yellow-500 hover:text-gray-900 ${
+                isMatsushimaOpen ? "text-yellow-500 bg-gray-700" : "text-gray-400"
+              }`}
+            >
+              <span style={{ marginRight: "12px" }} className="ml-2">
+                {isMatsushimaOpen ? "▼" : "▶"}
+              </span>
+              Matsushima
+            </button>
+            {isMatsushimaOpen && (
+              <div className="pl-4">
+                <NavLink className={getLinkClassName} end to="/matsushima">
+                  Lunes
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaMartes">
+                  Martes
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaMiercoles">
+                  Miércoles
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaJueves">
+                  Jueves
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaViernes">
+                  Viernes
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaSabado">
+                  Sábado
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaDomingo">
+                  Domingo
+                </NavLink>
+              </div>
+            )}
+          </div>
+
           <NavLink className={getLinkClassName} end to="/menu">
-            Menu
+            Menú
           </NavLink>
 
           <NavLink className={getLinkClassName} end to="/">

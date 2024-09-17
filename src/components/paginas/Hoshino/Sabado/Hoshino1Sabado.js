@@ -96,10 +96,10 @@ const Hoshino1Sabado = () => {
         platillo.imagen = urlimagen || imagenPorDefecto; // Usa la imagen por defecto si no hay ninguna cargada
         platillo.orden = categoria[platillo.categoria.toLowerCase()];
 
-        firebase.db.collection("hoshino").add(platillo);
+        firebase.db.collection("hoshinoSabado").add(platillo);
 
         // Redireccionar
-        navigate("/hoshino");
+        navigate("/hoshinoSabado");
       } catch (error) {
         console.log(error);
       }
@@ -204,7 +204,7 @@ const Hoshino1Sabado = () => {
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                 id="nombre"
                 type="text"
-                placeholder="Nombre Platillo"
+                placeholder="Empresa"
                 value={formik.values.nombre}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -257,7 +257,7 @@ const Hoshino1Sabado = () => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
                 id="descripcion"
-                placeholder="Descripción del platillo"
+                placeholder="Direccion"
                 value={formik.values.descripcion}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
@@ -310,7 +310,7 @@ const Hoshino1Sabado = () => {
               <textarea
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline h-40"
                 id="descripcion2"
-                placeholder="Descripción del platillo"
+                placeholder="Direccion"
                 value={formik.values.descripcion2}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}

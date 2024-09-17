@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
-const Hoshino2Jueves = ({ platillo }) => {
+const Matsushima2Jueves = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
   const {
@@ -35,7 +35,7 @@ const Hoshino2Jueves = ({ platillo }) => {
     const nuevaExistencia = existenciaRef.current.value === "true";
     setDisponibilidad(nuevaExistencia);
     try {
-      firebase.db.collection("hoshinoJueves").doc(id).update({
+      firebase.db.collection("matsushimaJueves").doc(id).update({
         existencia: nuevaExistencia,
       });
     } catch (error) {
@@ -45,7 +45,7 @@ const Hoshino2Jueves = ({ platillo }) => {
 
   const eliminarPedido = () => {
     try {
-      firebase.db.collection("hoshinoJueves").doc(id).delete();
+      firebase.db.collection("matsushimaJueves").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -58,13 +58,13 @@ const Hoshino2Jueves = ({ platillo }) => {
       // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(`hoshinoJueves/${nuevaImagen.name}`);
+        const imagenRef = storageRef.child(`matsushimaJueves/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
       // Actualizar el documento en la colección de Firebase
-      await firebase.db.collection("hoshinoJueves").doc(id).update({
+      await firebase.db.collection("matsushimaJueves").doc(id).update({
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
@@ -241,4 +241,4 @@ const Hoshino2Jueves = ({ platillo }) => {
   );
 };
 
-export default Hoshino2Jueves;
+export default Matsushima2Jueves;

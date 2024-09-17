@@ -7,8 +7,6 @@ import Ordenes from "./components/paginas/Ordenes";
 import Menu from "./components/paginas/Menu";
 import NuevoPlatillo from "./components/paginas/NuevoPlatillo";
 import Sidebar from "./components/ui/Sidebar";
-import Matsushima from "./components/paginas/Matsushima/Matsushima";
-import Matsushima1 from "./components/paginas/Matsushima/Matsushima1";
 import Tomaoka from "./components/paginas/Tomaoka/Tomaoka";
 import Tomaoka1 from "./components/paginas/Tomaoka/Tomaoka1";
 
@@ -28,6 +26,23 @@ import Hoshino1Sabado from "./components/paginas/Hoshino/Sabado/Hoshino1Sabado";
 import HoshinoDomingo from "./components/paginas/Hoshino/Domingo/HoshinoDomingo";
 import Hoshino1Domingo from "./components/paginas/Hoshino/Domingo/Hoshino1Domingo";
 
+//MATSUSHIMA
+import Matsushima from "./components/paginas/Matsushima/Lunes/Matsushima";
+import Matsushima1 from "./components/paginas/Matsushima/Lunes/Matsushima1";
+import MatsushimaMartes from "./components/paginas/Matsushima/Martes/MatsushimaMartes";
+import Matsushima1Martes from "./components/paginas/Matsushima/Martes/Matsushima1Martes";
+import MatsushimaMiercoles from "./components/paginas/Matsushima/Miercoles/MatsushimaMiercoles";
+import Matsushima1Miercoles from "./components/paginas/Matsushima/Miercoles/Matsushima1Miercoles";
+import MatsushimaJueves from "./components/paginas/Matsushima/Jueves/MatsushimaJueves";
+import Matsushima1Jueves from "./components/paginas/Matsushima/Jueves/Matsushima1Jueves";
+import MatsushimaViernes from "./components/paginas/Matsushima/Viernes/MatsushimaViernes";
+import Matsushima1Viernes from "./components/paginas/Matsushima/Viernes/Matsushima1Viernes";
+import MatsushimaSabado from "./components/paginas/Matsushima/Sabado/MatsushimaSabado";
+import Matsushima1Sabado from "./components/paginas/Matsushima/Sabado/Matsushima1Sabado";
+import MatsushimaDomingo from "./components/paginas/Matsushima/Domingo/MatsushimaDomingo";
+import Matsushima1Domingo from "./components/paginas/Matsushima/Domingo/Matsushima1Domingo";
+
+
 
 function App() {
   return (
@@ -42,7 +57,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Ordenes />} />
             <Route path="/menu" element={<Menu />} />
-            <Route path="/matsushima" element={<Matsushima />} />
+            
             <Route path="/tomaoka" element={<Tomaoka />} />
             
             
@@ -61,6 +76,22 @@ function App() {
             <Route path="/hoshino1Sabado" element={<Hoshino1Sabado />} />
             <Route path="/hoshinoDomingo" element={<HoshinoDomingo />} />
             <Route path="/hoshino1Domingo" element={<Hoshino1Domingo />} />
+
+            {/* //Matsushima */}
+            <Route path="/matsushima" element={<Matsushima />} />
+            <Route path="//matsushima1" element={<Matsushima1 />} />
+            <Route path="//matsushimaMartes" element={<MatsushimaMartes />} />
+            <Route path="//matsushima1Martes" element={<Matsushima1Martes />} />
+            <Route path="//matsushimaMiercoles" element={<MatsushimaMiercoles />} />
+            <Route path="//matsushima1Miercoles" element={<Matsushima1Miercoles />} />
+            <Route path="//matsushimaJueves" element={<MatsushimaJueves />} />
+            <Route path="//matsushima1Jueves" element={<Matsushima1Jueves />} />
+            <Route path="//matsushimaViernes" element={<MatsushimaViernes />} />
+            <Route path="//matsushima1Viernes" element={<Matsushima1Viernes />} />
+            <Route path="//matsushimaSabado" element={<MatsushimaSabado/>} />
+            <Route path="//matsushima1Sabado" element={<Matsushima1Sabado />} />
+            <Route path="//matsushimaDomingo" element={<MatsushimaDomingo />} />
+            <Route path="//matsushima1Domingo" element={<Matsushima1Domingo />} />
 
 
 

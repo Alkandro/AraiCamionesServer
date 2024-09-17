@@ -98,7 +98,7 @@ const Hoshino2Sabado = ({ platillo }) => {
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
                 <select
-                  className={`bg-white shadow appearance-none border rounded w-full py-2 px-3 leading-tight focus:outline-none focus:shadow-outline ${
+                  className={`bg-white shadow appearance-none border rounded w-full py-2 px-2 leading-tight focus:outline-none focus:shadow-outline ${
                     disponibilidad ? "text-blue-600" : "text-red-600"
                   }`}
                   value={existencia}
