@@ -152,7 +152,7 @@ const Hoshino1Domingo = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                <option value="lunes">Lunes</option>
+                <option value="domingo">Domingo</option>
               </select>
             </div>
 
