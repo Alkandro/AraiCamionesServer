@@ -7,8 +7,7 @@ import Ordenes from "./components/paginas/Ordenes";
 import Menu from "./components/paginas/Menu";
 import NuevoPlatillo from "./components/paginas/NuevoPlatillo";
 import Sidebar from "./components/ui/Sidebar";
-import Tomaoka from "./components/paginas/Tomaoka/Tomaoka";
-import Tomaoka1 from "./components/paginas/Tomaoka/Tomaoka1";
+
 
 //HOSHINO
 import Hoshino from "./components/paginas/Hoshino/Lunes/Hoshino";
@@ -42,6 +41,23 @@ import Matsushima1Sabado from "./components/paginas/Matsushima/Sabado/Matsushima
 import MatsushimaDomingo from "./components/paginas/Matsushima/Domingo/MatsushimaDomingo";
 import Matsushima1Domingo from "./components/paginas/Matsushima/Domingo/Matsushima1Domingo";
 
+//TOMAOKA
+import Tomaoka from "./components/paginas/Tomaoka/Lunes/Tomaoka";
+import Tomaoka1 from "./components/paginas/Tomaoka/Lunes/Tomaoka1";
+import TomaokaMartes from "./components/paginas/Tomaoka/Martes/TomaokaMartes";
+import Tomaoka1Martes from "./components/paginas/Tomaoka/Martes/Tomaoka1Martes";
+import TomaokaMiercoles from "./components/paginas/Tomaoka/Miercoles/TomaokaMiercoles";
+import Tomaoka1Miercoles from "./components/paginas/Tomaoka/Miercoles/Tomaoka1Miercoles";
+import TomaokaJueves from "./components/paginas/Tomaoka/Jueves/TomaokaJueves";
+import Tomaoka1Jueves from "./components/paginas/Tomaoka/Jueves/Tomaoka1Jueves";
+import TomaokaViernes from "./components/paginas/Tomaoka/Viernes/TomaokaViernes";
+import Tomaoka1Viernes from "./components/paginas/Tomaoka/Viernes/Tomaoka1Viernes";
+import TomaokaSabado from "./components/paginas/Tomaoka/Sabado/TomaokaSabado";
+import Tomaoka1Sabado from "./components/paginas/Tomaoka/Sabado/Tomaoka1Sabado";
+import TomaokaDomingo from "./components/paginas/Tomaoka/Domingo/TomaokaDomingo";
+import Tomaoka1Domingo from "./components/paginas/Tomaoka/Domingo/Tomaoka1Domingo";
+
+
 
 
 function App() {
@@ -58,7 +74,7 @@ function App() {
             <Route path="/" element={<Ordenes />} />
             <Route path="/menu" element={<Menu />} />
             
-            <Route path="/tomaoka" element={<Tomaoka />} />
+            
             
             
             {/* //Hoshino */}
@@ -79,25 +95,41 @@ function App() {
 
             {/* //Matsushima */}
             <Route path="/matsushima" element={<Matsushima />} />
-            <Route path="//matsushima1" element={<Matsushima1 />} />
-            <Route path="//matsushimaMartes" element={<MatsushimaMartes />} />
-            <Route path="//matsushima1Martes" element={<Matsushima1Martes />} />
-            <Route path="//matsushimaMiercoles" element={<MatsushimaMiercoles />} />
-            <Route path="//matsushima1Miercoles" element={<Matsushima1Miercoles />} />
-            <Route path="//matsushimaJueves" element={<MatsushimaJueves />} />
-            <Route path="//matsushima1Jueves" element={<Matsushima1Jueves />} />
-            <Route path="//matsushimaViernes" element={<MatsushimaViernes />} />
-            <Route path="//matsushima1Viernes" element={<Matsushima1Viernes />} />
-            <Route path="//matsushimaSabado" element={<MatsushimaSabado/>} />
-            <Route path="//matsushima1Sabado" element={<Matsushima1Sabado />} />
-            <Route path="//matsushimaDomingo" element={<MatsushimaDomingo />} />
-            <Route path="//matsushima1Domingo" element={<Matsushima1Domingo />} />
+            <Route path="/matsushima1" element={<Matsushima1 />} />
+            <Route path="/matsushimaMartes" element={<MatsushimaMartes />} />
+            <Route path="/matsushima1Martes" element={<Matsushima1Martes />} />
+            <Route path="/matsushimaMiercoles" element={<MatsushimaMiercoles />} />
+            <Route path="/matsushima1Miercoles" element={<Matsushima1Miercoles />} />
+            <Route path="/matsushimaJueves" element={<MatsushimaJueves />} />
+            <Route path="/matsushima1Jueves" element={<Matsushima1Jueves />} />
+            <Route path="/matsushimaViernes" element={<MatsushimaViernes />} />
+            <Route path="/matsushima1Viernes" element={<Matsushima1Viernes />} />
+            <Route path="/matsushimaSabado" element={<MatsushimaSabado/>} />
+            <Route path="/matsushima1Sabado" element={<Matsushima1Sabado />} />
+            <Route path="/matsushimaDomingo" element={<MatsushimaDomingo />} />
+            <Route path="/matsushima1Domingo" element={<Matsushima1Domingo />} />
+
+             {/* //Tomaoka */}
+             <Route path="/tomaoka" element={<Tomaoka/>} />
+            <Route path="/tomaoka1" element={<Tomaoka1 />} />
+            <Route path="/tomaokaMartes" element={<TomaokaMartes />} />
+            <Route path="/tomaoka1Martes" element={<Tomaoka1Martes />} />
+            <Route path="/tomaokaMiercoles" element={<TomaokaMiercoles />} />
+            <Route path="/tomaoka1Miercoles" element={<Tomaoka1Miercoles />} />
+            <Route path="/tomaokaJueves" element={<TomaokaJueves />} />
+            <Route path="/tomaoka1Jueves" element={<Tomaoka1Jueves />} />
+            <Route path="/tomaokaViernes" element={<TomaokaViernes />} />
+            <Route path="/tomaoka1Viernes" element={<Tomaoka1Viernes />} />
+            <Route path="/tomaokaSabado" element={<TomaokaSabado/>} />
+            <Route path="/tomaoka1Sabado" element={<Tomaoka1Sabado />} />
+            <Route path="/tomaokaDomingo" element={<TomaokaDomingo />} />
+            <Route path="/tomaoka1Domingo" element={<Tomaoka1Domingo />} />
+
 
 
 
             <Route path="/nuevo-platillo" element={<NuevoPlatillo />} />
-            <Route path="/matsushima1" element={<Matsushima1 />} />
-            <Route path="/tomaoka1" element={<Tomaoka1 />} />
+           
             
             
           </Routes>
