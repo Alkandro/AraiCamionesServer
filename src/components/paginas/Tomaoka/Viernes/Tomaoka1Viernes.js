@@ -56,7 +56,7 @@ const Tomaoka1Viernes = () => {
       precio: "",
       fecha: "",
       fecha2: "",
-      categoria: "Viernes",
+      categoria: "viernes",
       imagen: "",
       descripcion: "",
       descripcion2: "",
