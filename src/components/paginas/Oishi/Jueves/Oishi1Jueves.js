@@ -10,7 +10,7 @@ import imagenDefecto from "../../../../fotos2/autos.jpeg";
 
 import { parse, isDate } from "date-fns";
 
-const Matsushima1Sabado = () => {
+const Oishi1Jueves = () => {
   // Estado para las imágenes
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
@@ -56,7 +56,7 @@ const Matsushima1Sabado = () => {
       precio: "",
       fecha: "",
       fecha2: "",
-      categoria: "sabado",
+      categoria: "jueves",
       imagen: "",
       descripcion: "",
       descripcion2: "",
@@ -96,10 +96,10 @@ const Matsushima1Sabado = () => {
         platillo.imagen = urlimagen || imagenPorDefecto; // Usa la imagen por defecto si no hay ninguna cargada
         platillo.orden = categoria[platillo.categoria.toLowerCase()];
 
-        firebase.db.collection("matsushimaSabado").add(platillo);
+        firebase.db.collection("oishiJueves").add(platillo);
 
         // Redireccionar
-        navigate("/matsushimaSabado");
+        navigate("/oishiJueves");
       } catch (error) {
         console.log(error);
       }
@@ -120,7 +120,7 @@ const Matsushima1Sabado = () => {
     guardarSubiendo(false);
 
     const url = await firebase.storage
-      .ref("matsushimaSabado")
+      .ref("oishiJueves")
       .child(nombre)
       .getDownloadURL();
 
@@ -132,7 +132,7 @@ const Matsushima1Sabado = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-light mb-4">Matsushima Sabado</h1>
+      <h1 className="text-3xl font-light mb-4">Oishi Jueves</h1>
 
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
@@ -152,7 +152,7 @@ const Matsushima1Sabado = () => {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               >
-                <option value="sabado">Sabado</option>
+                <option value="jueves">Jueves</option>
               </select>
             </div>
 
@@ -339,7 +339,7 @@ const Matsushima1Sabado = () => {
                 id="imagen"
                 name="imagen"
                 randomizeFilename
-                storageRef={firebase.storage.ref("matsushimaSabado")}
+                storageRef={firebase.storage.ref("oishiJueves")}
                 onUploadStart={handleUploadStart}
                 onUploadError={handleUploadError}
                 onUploadSuccess={handleUploadSuccess}
@@ -388,4 +388,4 @@ const Matsushima1Sabado = () => {
   );
 };
 
-export default Matsushima1Sabado;
+export default Oishi1Jueves;

@@ -379,7 +379,7 @@ const Matsushima1Domingo = () => {
             <input
               type="submit"
               className="bg-gray-800 hover:bg-gray-900 w-full mt-5 p-2 text-white uppercase font-bold"
-              value="Agregar Platillo"
+              value="Enviar"
             />
           </form>
         </div>

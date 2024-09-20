@@ -3,8 +3,7 @@ import { Routes, Route } from "react-router";
 
 import firebase, { FirebaseContext } from "./firebase";
 
-import Ordenes from "./components/paginas/Ordenes";
-import Menu from "./components/paginas/Menu";
+// import Ordenes from "./components/paginas/Ordenes";
 import NuevoPlatillo from "./components/paginas/NuevoPlatillo";
 import Sidebar from "./components/ui/Sidebar";
 
@@ -57,6 +56,21 @@ import Tomaoka1Sabado from "./components/paginas/Tomaoka/Sabado/Tomaoka1Sabado";
 import TomaokaDomingo from "./components/paginas/Tomaoka/Domingo/TomaokaDomingo";
 import Tomaoka1Domingo from "./components/paginas/Tomaoka/Domingo/Tomaoka1Domingo";
 
+//OISHI
+import Oishi from "./components/paginas/Oishi/Lunes/Oishi";
+import Oishi1 from "./components/paginas/Oishi/Lunes/Oishi1";
+import OishiMartes from "./components/paginas/Oishi/Martes/OishiMartes";
+import Oishi1Martes from "./components/paginas/Oishi/Martes/Oishi1Martes";
+import OishiMiercoles from "./components/paginas/Oishi/Miercoles/OishiMiercoles";
+import Oishi1Miercoles from "./components/paginas/Oishi/Miercoles/Oishi1Miercoles";
+import OishiJueves from "./components/paginas/Oishi/Jueves/OishiJueves";
+import Oishi1Jueves from "./components/paginas/Oishi/Jueves/Oishi1Jueves";
+import OishiViernes from "./components/paginas/Oishi/Viernes/OishiViernes";
+import Oishi1Viernes from "./components/paginas/Oishi/Viernes/Oishi1Viernes";
+import OishiSabado from "./components/paginas/Oishi/Sabado/OishiSabado";
+import Oishi1Sabado from "./components/paginas/Oishi/Sabado/Oishi1Sabado";
+import OishiDomingo from "./components/paginas/Oishi/Domingo/OishiDomingo";
+import Oishi1Domingo from "./components/paginas/Oishi/Domingo/Oishi1Domingo";
 
 
 
@@ -71,11 +85,7 @@ function App() {
         <Sidebar />
         <div className="md:w-3/5 xl:w-4/5 p-6">
           <Routes>
-            <Route path="/" element={<Ordenes />} />
-            <Route path="/menu" element={<Menu />} />
-            
-            
-            
+            {/* <Route path="/" element={<Ordenes />} /> */}
             
             {/* //Hoshino */}
             <Route path="/hoshino" element={<Hoshino />} />
@@ -124,6 +134,23 @@ function App() {
             <Route path="/tomaoka1Sabado" element={<Tomaoka1Sabado />} />
             <Route path="/tomaokaDomingo" element={<TomaokaDomingo />} />
             <Route path="/tomaoka1Domingo" element={<Tomaoka1Domingo />} />
+
+             {/* //Oishi */}
+             <Route path="/oishi" element={<Oishi/>} />
+            <Route path="/oishi1" element={<Oishi1 />} />
+            <Route path="/oishiMartes" element={<OishiMartes />} />
+            <Route path="/oishi1Martes" element={<Oishi1Martes />} />
+            <Route path="/oishiMiercoles" element={<OishiMiercoles />} />
+            <Route path="/oishi1Miercoles" element={<Oishi1Miercoles />} />
+            <Route path="/oishiJueves" element={<OishiJueves />} />
+            <Route path="/oishi1Jueves" element={<Oishi1Jueves />} />
+            <Route path="/oishiViernes" element={<OishiViernes />} />
+            <Route path="/oishi1Viernes" element={<Oishi1Viernes />} />
+            <Route path="/oishiSabado" element={<OishiSabado/>} />
+            <Route path="/oishi1Sabado" element={<Oishi1Sabado />} />
+            <Route path="/oishiDomingo" element={<OishiDomingo />} />
+            <Route path="/oishi1Domingo" element={<Oishi1Domingo />} />
+
 
 
 

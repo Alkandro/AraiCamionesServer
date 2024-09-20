@@ -175,7 +175,7 @@ const Sidebar = () => {
               <span style={{ marginRight: "12px" }} className="ml-2">
                 {isOishiOpen ? "▼" : "▶"}
               </span>
-              Oishi
+              Oishi(MOLEZINHA)
             </button>
             {isOishiOpen && (
               <div className="pl-4">
@@ -493,13 +493,11 @@ const Sidebar = () => {
             )}
           </div>
 
-          <NavLink className={getLinkClassName} end to="/menu">
-            Menú
-          </NavLink>
+         
 
-          <NavLink className={getLinkClassName} end to="/">
+          {/* <NavLink className={getLinkClassName} end to="/">
             Órdenes
-          </NavLink>
+          </NavLink> */}
         </nav>
       </div>
     </div>
