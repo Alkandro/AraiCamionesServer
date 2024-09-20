@@ -22,13 +22,6 @@ const Matsushima1 = () => {
     return isDate(parsedDate) ? parsedDate : originalValue;
   };
 
-  const validationSchema = Yup.object().shape({
-    fecha: Yup.date()
-      .transform(parseDateString) // Transformar el string en un objeto Date
-      .required("La fecha es obligatoria")
-      .typeError("La fecha debe estar en formato DD/MM/YYYY"),
-  });
-
   // URL de imagen por defecto
   const imagenPorDefecto = imagenDefecto;
 
