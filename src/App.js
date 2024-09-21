@@ -72,6 +72,22 @@ import Oishi1Sabado from "./components/paginas/Oishi/Sabado/Oishi1Sabado";
 import OishiDomingo from "./components/paginas/Oishi/Domingo/OishiDomingo";
 import Oishi1Domingo from "./components/paginas/Oishi/Domingo/Oishi1Domingo";
 
+//OKAMOTO
+import Okamoto from "./components/paginas/Okamoto/Lunes/Okamoto";
+import Okamoto1 from "./components/paginas/Okamoto/Lunes/Okamoto1";
+import OkamotoMartes from "./components/paginas/Okamoto/Martes/OkamotoMartes";
+import Okamoto1Martes from "./components/paginas/Okamoto/Martes/Okamoto1Martes";
+import OkamotoMiercoles from "./components/paginas/Okamoto/Miercoles/OkamotoMiercoles";
+import Okamoto1Miercoles from "./components/paginas/Okamoto/Miercoles/Okamoto1Miercoles";
+import OkamotoJueves from "./components/paginas/Okamoto/Jueves/OkamotoJueves";
+import Okamoto1Jueves from "./components/paginas/Okamoto/Jueves/Okamoto1Jueves";
+import OkamotoViernes from "./components/paginas/Okamoto/Viernes/OkamotoViernes";
+import Okamoto1Viernes from "./components/paginas/Okamoto/Viernes/Okamoto1Viernes";
+import OkamotoSabado from "./components/paginas/Okamoto/Sabado/OkamotoSabado";
+import Okamoto1Sabado from "./components/paginas/Okamoto/Sabado/Okamoto1Sabado";
+import OkamotoDomingo from "./components/paginas/Okamoto/Domingo/OkamotoDomingo";
+import Okamoto1Domingo from "./components/paginas/Okamoto/Domingo/Okamoto1Domingo";
+
 
 
 function App() {
@@ -150,6 +166,22 @@ function App() {
             <Route path="/oishi1Sabado" element={<Oishi1Sabado />} />
             <Route path="/oishiDomingo" element={<OishiDomingo />} />
             <Route path="/oishi1Domingo" element={<Oishi1Domingo />} />
+
+             {/* //Okamoto */}
+             <Route path="/okamoto" element={<Okamoto />} />
+            <Route path="/okamoto1" element={<Okamoto1 />} />
+            <Route path="/okamotoMartes" element={<OkamotoMartes />} />
+            <Route path="/okamoto1Martes" element={<Okamoto1Martes />} />
+            <Route path="/okamotoMiercoles" element={<OkamotoMiercoles />} />
+            <Route path="/okamoto1Miercoles" element={<Okamoto1Miercoles />} />
+            <Route path="/okamotoJueves" element={<OkamotoJueves />} />
+            <Route path="/okamoto1Jueves" element={<Okamoto1Jueves />} />
+            <Route path="/okamotoViernes" element={<OkamotoViernes />} />
+            <Route path="/okamoto1Viernes" element={<Okamoto1Viernes />} />
+            <Route path="/okamotoSabado" element={<OkamotoSabado/>} />
+            <Route path="/okamoto1Sabado" element={<Okamoto1Sabado />} />
+            <Route path="/okamotoDomingo" element={<OkamotoDomingo />} />
+            <Route path="/okamoto1Domingo" element={<Okamoto1Domingo />} />
 
 
 
