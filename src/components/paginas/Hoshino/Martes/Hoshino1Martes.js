@@ -16,12 +16,6 @@ const Hoshino1Martes = () => {
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
 
-  // Función para transformar la cadena de fecha al formato correcto
-  const parseDateString = (value, originalValue) => {
-    const parsedDate = parse(originalValue, "dd/MM/yyyy", new Date());
-    return isDate(parsedDate) ? parsedDate : originalValue;
-  };
-
   // URL de imagen por defecto
   const imagenPorDefecto = imagenDefecto;
 

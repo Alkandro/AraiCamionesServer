@@ -16,11 +16,11 @@ const Tomaoka1Miercoles = () => {
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
 
-  // Función para transformar la cadena de fecha al formato correcto
-  const parseDateString = (value, originalValue) => {
-    const parsedDate = parse(originalValue, "dd/MM/yyyy", new Date());
-    return isDate(parsedDate) ? parsedDate : originalValue;
-  };
+  // // Función para transformar la cadena de fecha al formato correcto
+  // const parseDateString = (value, originalValue) => {
+  //   const parsedDate = parse(originalValue, "dd/MM/yyyy", new Date());
+  //   return isDate(parsedDate) ? parsedDate : originalValue;
+  // };
 // //PARA VER SI REALMENTE SE ELIMINA
 //   const validationSchema = Yup.object().shape({
 //     fecha: Yup.date()
