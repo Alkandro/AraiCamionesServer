@@ -88,6 +88,102 @@ import Okamoto1Sabado from "./components/paginas/Okamoto/Sabado/Okamoto1Sabado";
 import OkamotoDomingo from "./components/paginas/Okamoto/Domingo/OkamotoDomingo";
 import Okamoto1Domingo from "./components/paginas/Okamoto/Domingo/Okamoto1Domingo";
 
+//YAMAKADO
+import Yamakado from "./components/paginas/Yamakado/Lunes/Yamakado";
+import Yamakado1 from "./components/paginas/Yamakado/Lunes/Yamakado1";
+import YamakadoMartes from "./components/paginas/Yamakado/Martes/YamakadoMartes";
+import Yamakado1Martes from "./components/paginas/Yamakado/Martes/Yamakado1Martes";
+import YamakadoMiercoles from "./components/paginas/Yamakado/Miercoles/YamakadoMiercoles";
+import Yamakado1Miercoles from "./components/paginas/Yamakado/Miercoles/Yamakado1Miercoles";
+import YamakadoJueves from "./components/paginas/Yamakado/Jueves/YamakadoJueves";
+import Yamakado1Jueves from "./components/paginas/Yamakado/Jueves/Yamakado1Jueves";
+import YamakadoViernes from "./components/paginas/Yamakado/Viernes/YamakadoViernes";
+import Yamakado1Viernes from "./components/paginas/Yamakado/Viernes/Yamakado1Viernes";
+import YamakadoSabado from "./components/paginas/Yamakado/Sabado/YamakadoSabado";
+import Yamakado1Sabado from "./components/paginas/Yamakado/Sabado/Yamakado1Sabado";
+import YamakadoDomingo from "./components/paginas/Yamakado/Domingo/YamakadoDomingo";
+import Yamakado1Domingo from "./components/paginas/Yamakado/Domingo/Yamakado1Domingo";
+
+//SKLAR
+import Sklar from "./components/paginas/Sklar/Lunes/Sklar";
+import Sklar1 from "./components/paginas/Sklar/Lunes/Sklar1";
+import SklarMartes from "./components/paginas/Sklar/Martes/SklarMartes";
+import Sklar1Martes from "./components/paginas/Sklar/Martes/Sklar1Martes";
+import SklarMiercoles from "./components/paginas/Sklar/Miercoles/SklarMiercoles";
+import Sklar1Miercoles from "./components/paginas/Sklar/Miercoles/Sklar1Miercoles";
+import SklarJueves from "./components/paginas/Sklar/Jueves/SklarJueves";
+import Sklar1Jueves from "./components/paginas/Sklar/Jueves/Sklar1Jueves";
+import SklarViernes from "./components/paginas/Sklar/Viernes/SklarViernes";
+import Sklar1Viernes from "./components/paginas/Sklar/Viernes/Sklar1Viernes";
+import SklarSabado from "./components/paginas/Sklar/Sabado/SklarSabado";
+import Sklar1Sabado from "./components/paginas/Sklar/Sabado/Sklar1Sabado";
+import SklarDomingo from "./components/paginas/Sklar/Domingo/SklarDomingo";
+import Sklar1Domingo from "./components/paginas/Sklar/Domingo/Sklar1Domingo";
+
+//ENRIQUE
+import Enrique from "./components/paginas/Enrique/Lunes/Enrique";
+import Enrique1 from "./components/paginas/Enrique/Lunes/Enrique1";
+import EnriqueMartes from "./components/paginas/Enrique/Martes/EnriqueMartes";
+import Enrique1Martes from "./components/paginas/Enrique/Martes/Enrique1Martes";
+import EnriqueMiercoles from "./components/paginas/Enrique/Miercoles/EnriqueMiercoles";
+import Enrique1Miercoles from "./components/paginas/Enrique/Miercoles/Enrique1Miercoles";
+import EnriqueJueves from "./components/paginas/Enrique/Jueves/EnriqueJueves";
+import Enrique1Jueves from "./components/paginas/Enrique/Jueves/Enrique1Jueves";
+import EnriqueViernes from "./components/paginas/Enrique/Viernes/EnriqueViernes";
+import Enrique1Viernes from "./components/paginas/Enrique/Viernes/Enrique1Viernes";
+import EnriqueSabado from "./components/paginas/Enrique/Sabado/EnriqueSabado";
+import Enrique1Sabado from "./components/paginas/Enrique/Sabado/Enrique1Sabado";
+import EnriqueDomingo from "./components/paginas/Enrique/Domingo/EnriqueDomingo";
+import Enrique1Domingo from "./components/paginas/Enrique/Domingo/Enrique1Domingo";
+
+//USER1
+import User1 from "./components/paginas/User1/Lunes/User1";
+import User11 from "./components/paginas/User1/Lunes/User11";
+import User1Martes from "./components/paginas/User1/Martes/User1Martes";
+import User11Martes from "./components/paginas/User1/Martes/User11Martes";
+import User1Miercoles from "./components/paginas/User1/Miercoles/User1Miercoles";
+import User11Miercoles from "./components/paginas/User1/Miercoles/User11Miercoles";
+import User1Jueves from "./components/paginas/User1/Jueves/User1Jueves";
+import User11Jueves from "./components/paginas/User1/Jueves/User11Jueves";
+import User1Viernes from "./components/paginas/User1/Viernes/User1Viernes";
+import User11Viernes from "./components/paginas/User1/Viernes/User11Viernes";
+import User1Sabado from "./components/paginas/User1/Sabado/User1Sabado";
+import User11Sabado from "./components/paginas/User1/Sabado/User11Sabado";
+import User1Domingo from "./components/paginas/User1/Domingo/User1Domingo";
+import User11Domingo from "./components/paginas/User1/Domingo/User11Domingo";
+
+//USER2
+import User2 from "./components/paginas/User2/Lunes/User2";
+import User21 from "./components/paginas/User2/Lunes/User21";
+import User2Martes from "./components/paginas/User2/Martes/User2Martes";
+import User21Martes from "./components/paginas/User2/Martes/User21Martes";
+import User2Miercoles from "./components/paginas/User2/Miercoles/User2Miercoles";
+import User21Miercoles from "./components/paginas/User2/Miercoles/User21Miercoles";
+import User2Jueves from "./components/paginas/User2/Jueves/User2Jueves";
+import User21Jueves from "./components/paginas/User2/Jueves/User21Jueves";
+import User2Viernes from "./components/paginas/User2/Viernes/User2Viernes";
+import User21Viernes from "./components/paginas/User2/Viernes/User21Viernes";
+import User2Sabado from "./components/paginas/User2/Sabado/User2Sabado";
+import User21Sabado from "./components/paginas/User2/Sabado/User21Sabado";
+import User2Domingo from "./components/paginas/User2/Domingo/User2Domingo";
+import User21Domingo from "./components/paginas/User2/Domingo/User21Domingo";
+
+//USER3
+import User3 from "./components/paginas/User3/Lunes/User3";
+import User31 from "./components/paginas/User3/Lunes/User31";
+import User3Martes from "./components/paginas/User3/Martes/User3Martes";
+import User31Martes from "./components/paginas/User3/Martes/User31Martes";
+import User3Miercoles from "./components/paginas/User3/Miercoles/User3Miercoles";
+import User31Miercoles from "./components/paginas/User3/Miercoles/User31Miercoles";
+import User3Jueves from "./components/paginas/User3/Jueves/User3Jueves";
+import User31Jueves from "./components/paginas/User3/Jueves/User31Jueves";
+import User3Viernes from "./components/paginas/User3/Viernes/User3Viernes";
+import User31Viernes from "./components/paginas/User3/Viernes/User31Viernes";
+import User3Sabado from "./components/paginas/User3/Sabado/User3Sabado";
+import User31Sabado from "./components/paginas/User3/Sabado/User31Sabado";
+import User3Domingo from "./components/paginas/User3/Domingo/User3Domingo";
+import User31Domingo from "./components/paginas/User3/Domingo/User31Domingo";
+
 
 
 function App() {
@@ -182,6 +278,102 @@ function App() {
             <Route path="/okamoto1Sabado" element={<Okamoto1Sabado />} />
             <Route path="/okamotoDomingo" element={<OkamotoDomingo />} />
             <Route path="/okamoto1Domingo" element={<Okamoto1Domingo />} />
+
+             {/* //Yamakado */}
+             <Route path="/yamakado" element={<Yamakado />} />
+            <Route path="/yamakado1" element={<Yamakado1 />} />
+            <Route path="/yamakadoMartes" element={<YamakadoMartes />} />
+            <Route path="/yamakado1Martes" element={<Yamakado1Martes />} />
+            <Route path="/yamakadoMiercoles" element={<YamakadoMiercoles />} />
+            <Route path="/yamakado1Miercoles" element={<Yamakado1Miercoles />} />
+            <Route path="/yamakadoJueves" element={<YamakadoJueves />} />
+            <Route path="/yamakado1Jueves" element={<Yamakado1Jueves />} />
+            <Route path="/yamakadoViernes" element={<YamakadoViernes />} />
+            <Route path="/yamakado1Viernes" element={<Yamakado1Viernes />} />
+            <Route path="/yamakadoSabado" element={<YamakadoSabado/>} />
+            <Route path="/yamakado1Sabado" element={<Yamakado1Sabado />} />
+            <Route path="/yamakadoDomingo" element={<YamakadoDomingo />} />
+            <Route path="/yamakado1Domingo" element={<Yamakado1Domingo />} />
+
+             {/* //Sklar */}
+             <Route path="/sklar" element={<Sklar  />} />
+            <Route path="/sklar1" element={<Sklar1 />} />
+            <Route path="/sklarMartes" element={<SklarMartes />} />
+            <Route path="/sklar1Martes" element={<Sklar1Martes />} />
+            <Route path="/sklarMiercoles" element={<SklarMiercoles />} />
+            <Route path="/sklar1Miercoles" element={<Sklar1Miercoles />} />
+            <Route path="/sklarJueves" element={<SklarJueves />} />
+            <Route path="/sklar1Jueves" element={<Sklar1Jueves />} />
+            <Route path="/sklarViernes" element={<SklarViernes />} />
+            <Route path="/sklar1Viernes" element={<Sklar1Viernes />} />
+            <Route path="/sklarSabado" element={<SklarSabado/>} />
+            <Route path="/sklar1Sabado" element={<Sklar1Sabado />} />
+            <Route path="/sklarDomingo" element={<SklarDomingo />} />
+            <Route path="/sklar1Domingo" element={<Sklar1Domingo />} />
+
+            {/* //Enrique */}
+            <Route path="/enrique" element={<Enrique  />} />
+            <Route path="/enrique1" element={<Enrique1 />} />
+            <Route path="/enriqueMartes" element={<EnriqueMartes />} />
+            <Route path="/enrique1Martes" element={<Enrique1Martes />} />
+            <Route path="/enriqueMiercoles" element={<EnriqueMiercoles />} />
+            <Route path="/enrique1Miercoles" element={<Enrique1Miercoles />} />
+            <Route path="/enriqueJueves" element={<EnriqueJueves />} />
+            <Route path="/enrique1Jueves" element={<Enrique1Jueves />} />
+            <Route path="/enriqueViernes" element={<EnriqueViernes />} />
+            <Route path="/enrique1Viernes" element={<Enrique1Viernes />} />
+            <Route path="/enriqueSabado" element={<EnriqueSabado/>} />
+            <Route path="/enrique1Sabado" element={<Enrique1Sabado />} />
+            <Route path="/enriqueDomingo" element={<EnriqueDomingo />} />
+            <Route path="/enrique1Domingo" element={<Enrique1Domingo />} />
+
+            {/* //User1 */}
+            <Route path="/user1" element={<User1  />} />
+            <Route path="/user11" element={<User11 />} />
+            <Route path="/user1Martes" element={<User1Martes />} />
+            <Route path="/user11Martes" element={<User11Martes />} />
+            <Route path="/user1Miercoles" element={<User1Miercoles />} />
+            <Route path="/user11Miercoles" element={<User11Miercoles />} />
+            <Route path="/user1Jueves" element={<User1Jueves />} />
+            <Route path="/user11Jueves" element={<User11Jueves />} />
+            <Route path="/user1Viernes" element={<User1Viernes />} />
+            <Route path="/user11Viernes" element={<User11Viernes />} />
+            <Route path="/user1Sabado" element={<User1Sabado/>} />
+            <Route path="/user11Sabado" element={<User11Sabado />} />
+            <Route path="/user1Domingo" element={<User1Domingo />} />
+            <Route path="/user11Domingo" element={<User11Domingo />} />
+
+            {/* //User2 */}
+            <Route path="/user2" element={<User2  />} />
+            <Route path="/user21" element={<User21 />} />
+            <Route path="/user2Martes" element={<User2Martes />} />
+            <Route path="/user21Martes" element={<User21Martes />} />
+            <Route path="/user2Miercoles" element={<User2Miercoles />} />
+            <Route path="/user21Miercoles" element={<User21Miercoles />} />
+            <Route path="/user2Jueves" element={<User2Jueves />} />
+            <Route path="/user21Jueves" element={<User21Jueves />} />
+            <Route path="/user2Viernes" element={<User2Viernes />} />
+            <Route path="/user21Viernes" element={<User21Viernes />} />
+            <Route path="/user2Sabado" element={<User2Sabado/>} />
+            <Route path="/user21Sabado" element={<User21Sabado />} />
+            <Route path="/user2Domingo" element={<User2Domingo />} />
+            <Route path="/user21Domingo" element={<User21Domingo />} />
+
+            {/* //User3 */}
+            <Route path="/user3" element={<User3  />} />
+            <Route path="/user31" element={<User31 />} />
+            <Route path="/user3Martes" element={<User3Martes />} />
+            <Route path="/user31Martes" element={<User31Martes />} />
+            <Route path="/user3Miercoles" element={<User3Miercoles />} />
+            <Route path="/user31Miercoles" element={<User31Miercoles />} />
+            <Route path="/user3Jueves" element={<User3Jueves />} />
+            <Route path="/user31Jueves" element={<User31Jueves />} />
+            <Route path="/user3Viernes" element={<User3Viernes />} />
+            <Route path="/user31Viernes" element={<User31Viernes />} />
+            <Route path="/user3Sabado" element={<User3Sabado/>} />
+            <Route path="/user31Sabado" element={<User31Sabado />} />
+            <Route path="/user3Domingo" element={<User3Domingo />} />
+            <Route path="/user31Domingo" element={<User31Domingo />} />
 
 
 
