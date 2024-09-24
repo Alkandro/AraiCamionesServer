@@ -35,6 +35,7 @@ const Sidebar = () => {
     } block hover:bg-yellow-500 hover:text-gray-900`;
 
   return (
+    
     <div className="md:w-2/5 xl:w-1/5 bg-gray-800">
       <div className="p-6">
         <p className="uppercase text-white text-2xl tracking-wide text-center font-bold">
@@ -380,7 +381,7 @@ const Sidebar = () => {
               >
                 {isUser1Open ? "▼" : "▶"}
               </span>
-              <p style={{ display: "inline-block", color: "red" }}> User1</p>
+              <p style={{ display: "inline-block", color: "white" }}> User1</p>
             </button>
             {isUser1Open && (
               <div className="pl-4">
@@ -422,7 +423,7 @@ const Sidebar = () => {
               >
                 {isUser1Open ? "▼" : "▶"}
               </span>
-              <p style={{ display: "inline-block", color: "blue" }}> User2</p>
+              <p style={{ display: "inline-block", color: "white" }}> User2</p>
             </button>
             {isUser2Open && (
               <div className="pl-4">
@@ -464,7 +465,7 @@ const Sidebar = () => {
               >
                 {isUser1Open ? "▼" : "▶"}
               </span>
-              <p style={{ display: "inline-block", color: "yellow" }}> User3</p>
+              <p style={{ display: "inline-block", color: "white" }}> User3</p>
             </button>
             {isUser3Open && (
               <div className="pl-4">
@@ -499,7 +500,8 @@ const Sidebar = () => {
             Órdenes
           </NavLink> */}
         </nav>
-      </div>
+        </div>
+    
     </div>
   );
 };

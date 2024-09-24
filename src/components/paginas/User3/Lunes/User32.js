@@ -3,7 +3,7 @@ import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
-const Sklar2Viernes = ({ platillo }) => {
+const User32 = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
   const {
@@ -35,7 +35,7 @@ const Sklar2Viernes = ({ platillo }) => {
     const nuevaExistencia = existenciaRef.current.value === "true";
     setDisponibilidad(nuevaExistencia);
     try {
-      firebase.db.collection("sklarViernes").doc(id).update({
+      firebase.db.collection("user3").doc(id).update({
         existencia: nuevaExistencia,
       });
     } catch (error) {
@@ -45,7 +45,7 @@ const Sklar2Viernes = ({ platillo }) => {
 
   const eliminarPedido = () => {
     try {
-      firebase.db.collection("sklaViernes").doc(id).delete();
+      firebase.db.collection("user3").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -58,13 +58,13 @@ const Sklar2Viernes = ({ platillo }) => {
       // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(`sklarViernes/${nuevaImagen.name}`);
+        const imagenRef = storageRef.child(`user3/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
       // Actualizar el documento en la colección de Firebase
-      await firebase.db.collection("sklaViernes").doc(id).update({
+      await firebase.db.collection("user3").doc(id).update({
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
@@ -241,4 +241,4 @@ const Sklar2Viernes = ({ platillo }) => {
   );
 };
 
-export default Sklar2Viernes;
+export default User32;

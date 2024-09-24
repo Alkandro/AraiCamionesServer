@@ -45,7 +45,7 @@ const Sklar2Martes = ({ platillo }) => {
 
   const eliminarPedido = () => {
     try {
-      firebase.db.collection("sklar").doc(id).delete();
+      firebase.db.collection("sklarrMartes").doc(id).delete();
     } catch (error) {
       console.log(error);
     }
@@ -58,13 +58,13 @@ const Sklar2Martes = ({ platillo }) => {
       // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(`sklar/${nuevaImagen.name}`);
+        const imagenRef = storageRef.child(`sklarrMartes/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
       // Actualizar el documento en la colección de Firebase
-      await firebase.db.collection("sklar").doc(id).update({
+      await firebase.db.collection("sklarrMartes").doc(id).update({
         nombre: nuevoNombre,
         categoria: nuevaCategoria,
         descripcion: nuevaDescripcion,
@@ -241,4 +241,4 @@ const Sklar2Martes = ({ platillo }) => {
   );
 };
 
-export default Sklar2;
+export default Sklar2Martes;

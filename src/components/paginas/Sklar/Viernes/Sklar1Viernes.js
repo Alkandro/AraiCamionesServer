@@ -43,7 +43,7 @@ const Sklar1Viernes = () => {
       precio: "",
       fecha: "",
       fecha2: "",
-      categoria: "virnes",
+      categoria: "viernes",
       imagen: "",
       descripcion: "",
       descripcion2: "",
