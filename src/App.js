@@ -23,6 +23,8 @@ import HoshinoSabado from "./components/paginas/Hoshino/Sabado/HoshinoSabado";
 import Hoshino1Sabado from "./components/paginas/Hoshino/Sabado/Hoshino1Sabado";
 import HoshinoDomingo from "./components/paginas/Hoshino/Domingo/HoshinoDomingo";
 import Hoshino1Domingo from "./components/paginas/Hoshino/Domingo/Hoshino1Domingo";
+import HoshinoMensaje from "./components/paginas/Hoshino/Mensaje/HoshinoMensaje";
+import Hoshino1Mensaje from "./components/paginas/Hoshino/Mensaje/Hoshino1Mensaje";
 
 //MATSUSHIMA
 import Matsushima from "./components/paginas/Matsushima/Lunes/Matsushima";
@@ -214,6 +216,8 @@ function App() {
             <Route path="/hoshino1Sabado" element={<Hoshino1Sabado />} />
             <Route path="/hoshinoDomingo" element={<HoshinoDomingo />} />
             <Route path="/hoshino1Domingo" element={<Hoshino1Domingo />} />
+            <Route path="/hoshinoMensaje" element={<HoshinoMensaje />} />
+            <Route path="/hoshino1Mensaje" element={<Hoshino1Mensaje />} />
 
             {/* //Matsushima */}
             <Route path="/matsushima" element={<Matsushima />} />

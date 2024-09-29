@@ -81,6 +81,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/hoshinoDomingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/hoshinoMensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>

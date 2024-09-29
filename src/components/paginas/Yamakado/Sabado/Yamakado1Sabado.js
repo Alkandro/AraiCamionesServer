@@ -43,7 +43,7 @@ const Yamakado1Sabado = () => {
       precio: "",
       fecha: "",
       fecha2: "",
-      categoria: "Sabado",
+      categoria: "sabado",
       imagen: "",
       descripcion: "",
       descripcion2: "",
