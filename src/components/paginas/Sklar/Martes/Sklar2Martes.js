@@ -188,7 +188,7 @@ const Sklar2Martes = ({ platillo }) => {
                 </p>
                 <p className="text-gray-600 mb-4">
                   Fecha de carga: {""}
-                  <span className="text-gray-700 font-bold">{fechaw}</span>
+                  <span className="text-gray-700 font-bold">{fecha2}</span>
                 </p>
                 <p className="text-gray-600 mb-4">
                   Fecha de descarga: {""}
