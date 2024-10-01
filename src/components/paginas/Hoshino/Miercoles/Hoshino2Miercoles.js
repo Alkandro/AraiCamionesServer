@@ -188,11 +188,11 @@ const Hoshino2Miercoles = ({ platillo }) => {
                 </p>
                 <p className="text-gray-600 mb-4">
                   Fecha de carga: {""}
-                  <span className="text-gray-700 font-bold">{fecha}</span>
+                  <span className="text-gray-700 font-bold">{fecha2}</span>
                 </p>
                 <p className="text-gray-600 mb-4">
                   Fecha de descarga: {""}
-                  <span className="text-gray-700 font-bold">{fecha2}</span>
+                  <span className="text-gray-700 font-bold">{fecha}</span>
                 </p>
               </div>
             )}
