@@ -86,7 +86,6 @@ const Tomaoka2Jueves = ({ platillo }) => {
       setNuevaImagen(e.target.files[0]);
     }
   };
-
   return (
     <div className="w-full px-3 mb-4">
       <div className="p-5 shadow-md bg-white">
@@ -114,6 +113,7 @@ const Tomaoka2Jueves = ({ platillo }) => {
           <div className="lg:w-7/12 xl:w-9/12 pl-9">
             {editando ? (
               <div>
+                 <label className="block mt-2 sm:w-2/4">Empresa</label>
                 <input
                   type="text"
                   className="mb-2 p-3 border border-gray-300 rounded"
@@ -121,6 +121,7 @@ const Tomaoka2Jueves = ({ platillo }) => {
                   onChange={(e) => setNuevoNombre(e.target.value)}
                   maxLength={26}
                 />
+                <label className="block mt-2 sm:w-2/4">Lugar de Carga</label>
 
                 <textarea
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
@@ -128,31 +129,35 @@ const Tomaoka2Jueves = ({ platillo }) => {
                   onChange={(e) => setNuevaDescripcion(e.target.value)}
                   maxLength={120}
                 ></textarea>
+                <label className="block mt-2 sm:w-2/4">Lugar de descarga</label>
                 <textarea
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaDescripcion2}
                   onChange={(e) => setNuevaDescripcion2(e.target.value)}
                   maxLength={120}
                 ></textarea>
+                <label className="block mt-2 sm:w-2/4">Horario de salida</label>
                 <input
                   type="time"
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevoPrecio}
                   onChange={(e) => setNuevoPrecio(e.target.value)}
                 />
-                <input
-                  type="date"
-                  className="mb-2 p-3 border border-gray-300 rounded w-full"
-                  value={nuevaFecha}
-                  onChange={(e) => setNuevaFecha(e.target.value)}
-                />
+
+                <label className="block mt-2 sm:w-2/4">Fecha de carga</label>
                 <input
                   type="date"
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaFecha2}
                   onChange={(e) => setNuevaFecha2(e.target.value)}
                 />
-
+                <label className="block mt-2 sm:w-2/4">Fecha de descarga</label>
+                <input
+                  type="date"
+                  className="mb-2 p-3 border border-gray-300 rounded w-full"
+                  value={nuevaFecha}
+                  onChange={(e) => setNuevaFecha(e.target.value)}
+                />
                 {/* Campo para seleccionar una nueva imagen */}
                 <input
                   type="file"

@@ -207,30 +207,30 @@ const Yamakado1Martes = () => {
               </div>
             ) : null}
 
-            <div className="mb-4">
+<div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="fecha"
+                htmlFor="fecha2"
               >
                 Fecha de Salida
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="fecha"
+                id="fecha2"
                 type="date"
-                value={formik.values.fecha}
+                value={formik.values.fecha2}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
             </div>
 
-            {formik.touched.fecha && formik.errors.fecha ? (
+            {formik.touched.fecha2 && formik.errors.fecha2 ? (
               <div
                 className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
                 role="alert"
               >
                 <p className="font-bold">Hubo un error:</p>
-                <p>{formik.errors.fecha} </p>
+                <p>{formik.errors.fecha2} </p>
               </div>
             ) : null}
 
@@ -264,27 +264,27 @@ const Yamakado1Martes = () => {
             <div className="mb-4">
               <label
                 className="block text-gray-700 text-sm font-bold mb-2"
-                htmlFor="fecha2"
+                htmlFor="fecha"
               >
                 Fecha de entrega
               </label>
               <input
                 className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                id="fecha2"
+                id="fecha"
                 type="date"
-                value={formik.values.fecha2}
+                value={formik.values.fecha}
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
             </div>
 
-            {formik.touched.fecha2 && formik.errors.fecha2 ? (
+            {formik.touched.fecha && formik.errors.fecha ? (
               <div
                 className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
                 role="alert"
               >
                 <p className="font-bold">Hubo un error:</p>
-                <p>{formik.errors.fecha2} </p>
+                <p>{formik.errors.fecha} </p>
               </div>
             ) : null}
             <div className="mb-4">
