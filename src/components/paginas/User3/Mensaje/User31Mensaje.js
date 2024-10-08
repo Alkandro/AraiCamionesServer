@@ -10,7 +10,7 @@ import imagenDefecto from "../../../../fotos2/autos.jpeg";
 
 
 
-const Hoshino1Mensaje = () => {
+const User31Mensaje = () => {
   // Estado para las imágenes
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
@@ -49,10 +49,10 @@ const Hoshino1Mensaje = () => {
         platillo.imagen = urlimagen || imagenPorDefecto; // Usa la imagen por defecto si no hay ninguna cargada
         platillo.orden = categoria[platillo.categoria.toLowerCase()];
 
-        firebase.db.collection("hoshinoMensaje").add(platillo);
+        firebase.db.collection("user3Mensaje").add(platillo);
 
         // Redireccionar
-        navigate("/hoshinoMensaje");
+        navigate("/user3Mensaje");
       } catch (error) {
         console.log(error);
       }
@@ -73,7 +73,7 @@ const Hoshino1Mensaje = () => {
     guardarSubiendo(false);
 
     const url = await firebase.storage
-      .ref("hoshinoMensaje")
+      .ref("user3Mensaje")
       .child(nombre)
       .getDownloadURL();
 
@@ -85,7 +85,7 @@ const Hoshino1Mensaje = () => {
 
   return (
     <>
-      <h1 className="text-3xl font-light mb-4">Hoshino Mensaje</h1>
+      <h1 className="text-3xl font-light mb-4">User3 Mensaje</h1>
 
       <div className="flex justify-center mt-10">
         <div className="w-full max-w-3xl">
@@ -158,7 +158,7 @@ const Hoshino1Mensaje = () => {
                 id="imagen"
                 name="imagen"
                 randomizeFilename
-                storageRef={firebase.storage.ref("hoshinoMensaje")}
+                storageRef={firebase.storage.ref("user3Mensaje")}
                 onUploadStart={handleUploadStart}
                 onUploadError={handleUploadError}
                 onUploadSuccess={handleUploadSuccess}
@@ -207,5 +207,5 @@ const Hoshino1Mensaje = () => {
   );
 };
 
-export default Hoshino1Mensaje;
+export default User31Mensaje;
 

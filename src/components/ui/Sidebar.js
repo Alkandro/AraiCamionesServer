@@ -124,6 +124,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/matsushimaDomingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/matsushimaMensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>
@@ -164,6 +167,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/tomaokaDomingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/tomaokaMensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>
@@ -179,7 +185,7 @@ const Sidebar = () => {
               <span style={{ marginRight: "12px" }} className="ml-2">
                 {isOishiOpen ? "▼" : "▶"}
               </span>
-              Oishi(MOLEZINHA)
+              Oishi
             </button>
             {isOishiOpen && (
               <div className="pl-4">
@@ -203,6 +209,9 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/oishiDomingo">
                   Domingo
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/oishiMensaje">
+                  Mensaje
                 </NavLink>
               </div>
             )}
@@ -244,6 +253,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/okamotoDomingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/okamotoMensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>
@@ -283,6 +295,9 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/yamakadoDomingo">
                   Domingo
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/yamakadoMensaje">
+                  Mensaje
                 </NavLink>
               </div>
             )}
@@ -324,6 +339,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/sklarDomingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/sklarMensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>
@@ -363,6 +381,9 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/enriqueDomingo">
                   Domingo
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/enriqueMensaje">
+                  Mensaje
                 </NavLink>
               </div>
             )}
@@ -409,6 +430,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/user1Domingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/user1Mensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>
@@ -451,6 +475,9 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/user2Domingo">
                   Domingo
                 </NavLink>
+                <NavLink className={getLinkClassName} end to="/user2Mensaje">
+                  Mensaje
+                </NavLink>
               </div>
             )}
           </div>
@@ -492,6 +519,9 @@ const Sidebar = () => {
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/user3Domingo">
                   Domingo
+                </NavLink>
+                <NavLink className={getLinkClassName} end to="/user3Mensaje">
+                  Mensaje
                 </NavLink>
               </div>
             )}

@@ -41,6 +41,8 @@ import MatsushimaSabado from "./components/paginas/Matsushima/Sabado/MatsushimaS
 import Matsushima1Sabado from "./components/paginas/Matsushima/Sabado/Matsushima1Sabado";
 import MatsushimaDomingo from "./components/paginas/Matsushima/Domingo/MatsushimaDomingo";
 import Matsushima1Domingo from "./components/paginas/Matsushima/Domingo/Matsushima1Domingo";
+import MatsushimaMensaje from "./components/paginas/Matsushima/Mensaje/MatsushimaMensaje";
+import Matsushima1Mensaje from "./components/paginas/Matsushima/Mensaje/Matsushima1Mensaje";
 
 //TOMAOKA
 import Tomaoka from "./components/paginas/Tomaoka/Lunes/Tomaoka";
@@ -57,6 +59,8 @@ import TomaokaSabado from "./components/paginas/Tomaoka/Sabado/TomaokaSabado";
 import Tomaoka1Sabado from "./components/paginas/Tomaoka/Sabado/Tomaoka1Sabado";
 import TomaokaDomingo from "./components/paginas/Tomaoka/Domingo/TomaokaDomingo";
 import Tomaoka1Domingo from "./components/paginas/Tomaoka/Domingo/Tomaoka1Domingo";
+import TomaokaMensaje from "./components/paginas/Tomaoka/Mensaje/TomaokaMensaje";
+import Tomaoka1Mensaje from "./components/paginas/Tomaoka/Mensaje/Tomaoka1Mensaje";
 
 //OISHI
 import Oishi from "./components/paginas/Oishi/Lunes/Oishi";
@@ -73,6 +77,8 @@ import OishiSabado from "./components/paginas/Oishi/Sabado/OishiSabado";
 import Oishi1Sabado from "./components/paginas/Oishi/Sabado/Oishi1Sabado";
 import OishiDomingo from "./components/paginas/Oishi/Domingo/OishiDomingo";
 import Oishi1Domingo from "./components/paginas/Oishi/Domingo/Oishi1Domingo";
+import OishiMensaje from "./components/paginas/Oishi/Mensaje/OishiMensaje";
+import Oishi1Mensaje from "./components/paginas/Oishi/Mensaje/Oishi1Mensaje";
 
 //OKAMOTO
 import Okamoto from "./components/paginas/Okamoto/Lunes/Okamoto";
@@ -89,6 +95,8 @@ import OkamotoSabado from "./components/paginas/Okamoto/Sabado/OkamotoSabado";
 import Okamoto1Sabado from "./components/paginas/Okamoto/Sabado/Okamoto1Sabado";
 import OkamotoDomingo from "./components/paginas/Okamoto/Domingo/OkamotoDomingo";
 import Okamoto1Domingo from "./components/paginas/Okamoto/Domingo/Okamoto1Domingo";
+import OkamotoMensaje from "./components/paginas/Okamoto/Mensaje/OkamotoMensaje";
+import Okamoto1Mensaje from "./components/paginas/Okamoto/Mensaje/Okamoto1Mensaje";
 
 //YAMAKADO
 import Yamakado from "./components/paginas/Yamakado/Lunes/Yamakado";
@@ -105,6 +113,8 @@ import YamakadoSabado from "./components/paginas/Yamakado/Sabado/YamakadoSabado"
 import Yamakado1Sabado from "./components/paginas/Yamakado/Sabado/Yamakado1Sabado";
 import YamakadoDomingo from "./components/paginas/Yamakado/Domingo/YamakadoDomingo";
 import Yamakado1Domingo from "./components/paginas/Yamakado/Domingo/Yamakado1Domingo";
+import YamakadoMensaje from "./components/paginas/Yamakado/Mensaje/YamakadoMensaje";
+import Yamakado1Mensaje from "./components/paginas/Yamakado/Mensaje/Yamakado1Mensaje";
 
 //SKLAR
 import Sklar from "./components/paginas/Sklar/Lunes/Sklar";
@@ -121,6 +131,8 @@ import SklarSabado from "./components/paginas/Sklar/Sabado/SklarSabado";
 import Sklar1Sabado from "./components/paginas/Sklar/Sabado/Sklar1Sabado";
 import SklarDomingo from "./components/paginas/Sklar/Domingo/SklarDomingo";
 import Sklar1Domingo from "./components/paginas/Sklar/Domingo/Sklar1Domingo";
+import SklarMensaje from "./components/paginas/Sklar/Mensaje/SklarMensaje";
+import Sklar1Mensaje from "./components/paginas/Sklar/Mensaje/Sklar1Mensaje";
 
 //ENRIQUE
 import Enrique from "./components/paginas/Enrique/Lunes/Enrique";
@@ -137,6 +149,8 @@ import EnriqueSabado from "./components/paginas/Enrique/Sabado/EnriqueSabado";
 import Enrique1Sabado from "./components/paginas/Enrique/Sabado/Enrique1Sabado";
 import EnriqueDomingo from "./components/paginas/Enrique/Domingo/EnriqueDomingo";
 import Enrique1Domingo from "./components/paginas/Enrique/Domingo/Enrique1Domingo";
+import EnriqueMensaje from "./components/paginas/Enrique/Mensaje/EnriqueMensaje";
+import Enrique1Mensaje from "./components/paginas/Enrique/Mensaje/Enrique1Mensaje";
 
 //USER1
 import User1 from "./components/paginas/User1/Lunes/User1";
@@ -153,6 +167,8 @@ import User1Sabado from "./components/paginas/User1/Sabado/User1Sabado";
 import User11Sabado from "./components/paginas/User1/Sabado/User11Sabado";
 import User1Domingo from "./components/paginas/User1/Domingo/User1Domingo";
 import User11Domingo from "./components/paginas/User1/Domingo/User11Domingo";
+import User1Mensaje from "./components/paginas/User1/Mensaje/User1Mensaje";
+import User11Mensaje from "./components/paginas/User1/Mensaje/User11Mensaje";
 
 //USER2
 import User2 from "./components/paginas/User2/Lunes/User2";
@@ -169,6 +185,8 @@ import User2Sabado from "./components/paginas/User2/Sabado/User2Sabado";
 import User21Sabado from "./components/paginas/User2/Sabado/User21Sabado";
 import User2Domingo from "./components/paginas/User2/Domingo/User2Domingo";
 import User21Domingo from "./components/paginas/User2/Domingo/User21Domingo";
+import User2Mensaje from "./components/paginas/User2/Mensaje/User2Mensaje";
+import User21Mensaje from "./components/paginas/User2/Mensaje/User21Mensaje";
 
 //USER3
 import User3 from "./components/paginas/User3/Lunes/User3";
@@ -185,6 +203,8 @@ import User3Sabado from "./components/paginas/User3/Sabado/User3Sabado";
 import User31Sabado from "./components/paginas/User3/Sabado/User31Sabado";
 import User3Domingo from "./components/paginas/User3/Domingo/User3Domingo";
 import User31Domingo from "./components/paginas/User3/Domingo/User31Domingo";
+import User3Mensaje from "./components/paginas/User3/Mensaje/User3Mensaje";
+import User31Mensaje from "./components/paginas/User3/Mensaje/User31Mensaje";
 
 
 
@@ -234,6 +254,8 @@ function App() {
             <Route path="/matsushima1Sabado" element={<Matsushima1Sabado />} />
             <Route path="/matsushimaDomingo" element={<MatsushimaDomingo />} />
             <Route path="/matsushima1Domingo" element={<Matsushima1Domingo />} />
+            <Route path="/matsushimaMensaje" element={<MatsushimaMensaje />} />
+            <Route path="/matsushima1Mensaje" element={<Matsushima1Mensaje />} />
 
              {/* //Tomaoka */}
              <Route path="/tomaoka" element={<Tomaoka/>} />
@@ -250,6 +272,8 @@ function App() {
             <Route path="/tomaoka1Sabado" element={<Tomaoka1Sabado />} />
             <Route path="/tomaokaDomingo" element={<TomaokaDomingo />} />
             <Route path="/tomaoka1Domingo" element={<Tomaoka1Domingo />} />
+            <Route path="/tomaokaMensaje" element={<TomaokaMensaje />} />
+            <Route path="/tomaoka1Mensaje" element={<Tomaoka1Mensaje />} />
 
              {/* //Oishi */}
              <Route path="/oishi" element={<Oishi/>} />
@@ -266,6 +290,8 @@ function App() {
             <Route path="/oishi1Sabado" element={<Oishi1Sabado />} />
             <Route path="/oishiDomingo" element={<OishiDomingo />} />
             <Route path="/oishi1Domingo" element={<Oishi1Domingo />} />
+            <Route path="/oishiMensaje" element={<OishiMensaje />} />
+            <Route path="/oishi1Mensaje" element={<Oishi1Mensaje />} />
 
              {/* //Okamoto */}
              <Route path="/okamoto" element={<Okamoto />} />
@@ -282,6 +308,8 @@ function App() {
             <Route path="/okamoto1Sabado" element={<Okamoto1Sabado />} />
             <Route path="/okamotoDomingo" element={<OkamotoDomingo />} />
             <Route path="/okamoto1Domingo" element={<Okamoto1Domingo />} />
+            <Route path="/okamotoMensaje" element={<OkamotoMensaje />} />
+            <Route path="/okamoto1Mensaje" element={<Okamoto1Mensaje />} />
 
              {/* //Yamakado */}
              <Route path="/yamakado" element={<Yamakado />} />
@@ -298,6 +326,8 @@ function App() {
             <Route path="/yamakado1Sabado" element={<Yamakado1Sabado />} />
             <Route path="/yamakadoDomingo" element={<YamakadoDomingo />} />
             <Route path="/yamakado1Domingo" element={<Yamakado1Domingo />} />
+            <Route path="/yamakadoMensaje" element={<YamakadoMensaje />} />
+            <Route path="/yamakado1Mensaje" element={<Yamakado1Mensaje />} />
 
              {/* //Sklar */}
              <Route path="/sklar" element={<Sklar  />} />
@@ -314,6 +344,8 @@ function App() {
             <Route path="/sklar1Sabado" element={<Sklar1Sabado />} />
             <Route path="/sklarDomingo" element={<SklarDomingo />} />
             <Route path="/sklar1Domingo" element={<Sklar1Domingo />} />
+            <Route path="/sklarMensaje" element={<SklarMensaje />} />
+            <Route path="/sklar1Mensaje" element={<Sklar1Mensaje />} />
 
             {/* //Enrique */}
             <Route path="/enrique" element={<Enrique  />} />
@@ -330,6 +362,8 @@ function App() {
             <Route path="/enrique1Sabado" element={<Enrique1Sabado />} />
             <Route path="/enriqueDomingo" element={<EnriqueDomingo />} />
             <Route path="/enrique1Domingo" element={<Enrique1Domingo />} />
+            <Route path="/enriqueMensaje" element={<EnriqueMensaje />} />
+            <Route path="/enrique1Mensaje" element={<Enrique1Mensaje />} />
 
             {/* //User1 */}
             <Route path="/user1" element={<User1  />} />
@@ -346,6 +380,8 @@ function App() {
             <Route path="/user11Sabado" element={<User11Sabado />} />
             <Route path="/user1Domingo" element={<User1Domingo />} />
             <Route path="/user11Domingo" element={<User11Domingo />} />
+            <Route path="/user1Mensaje" element={<User1Mensaje />} />
+            <Route path="/user11Mensaje" element={<User11Mensaje />} />
 
             {/* //User2 */}
             <Route path="/user2" element={<User2  />} />
@@ -362,6 +398,8 @@ function App() {
             <Route path="/user21Sabado" element={<User21Sabado />} />
             <Route path="/user2Domingo" element={<User2Domingo />} />
             <Route path="/user21Domingo" element={<User21Domingo />} />
+            <Route path="/user2Mensaje" element={<User2Mensaje />} />
+            <Route path="/user21Mensaje" element={<User21Mensaje />} />
 
             {/* //User3 */}
             <Route path="/user3" element={<User3  />} />
@@ -378,6 +416,8 @@ function App() {
             <Route path="/user31Sabado" element={<User31Sabado />} />
             <Route path="/user3Domingo" element={<User3Domingo />} />
             <Route path="/user31Domingo" element={<User31Domingo />} />
+            <Route path="/user3Mensaje" element={<User3Mensaje />} />
+            <Route path="/user31Mensaje" element={<User31Mensaje />} />
 
 
 
