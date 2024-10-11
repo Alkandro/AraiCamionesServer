@@ -1,0 +1,28 @@
+/* Estilo personalizado para el checkbox */
+.custom-checkbox {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    appearance: none; /* Elimina el estilo predeterminado del navegador */
+    background-color: #f5f5f5; /* Fondo del checkbox */
+    border: 2px solid #ccc; /* Borde del checkbox */
+    border-radius: 5px; /* Borde redondeado */
+    transition: all 0.3s ease; /* Suaviza la transición al cambiar de estado */
+  }
+  
+  .custom-checkbox:checked {
+    background-color: #4caf50; /* Fondo cuando está marcado */
+    border-color: #4caf50; /* Borde verde cuando está marcado */
+  }
+  
+  .custom-checkbox:checked::before {
+    content: "✓"; /* Marca de check */
+    color: white;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  

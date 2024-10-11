@@ -1,4 +1,4 @@
-// //Este es el archivo para agregar pedidos
+// //Este es el archivo para agregar mensajes
 import React, { useContext, useState } from "react";
 import { useFormik } from "formik";
 import * as Yup from "yup";

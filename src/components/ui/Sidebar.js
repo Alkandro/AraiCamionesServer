@@ -448,7 +448,7 @@ const Sidebar = () => {
                 style={{ display: "inline-block", marginRight: "12px" }}
                 className="ml-2"
               >
-                {isUser1Open ? "▼" : "▶"}
+                {isUser2Open ? "▼" : "▶"}
               </span>
               <p style={{ display: "inline-block", color: "white" }}> User2</p>
             </button>
@@ -493,7 +493,7 @@ const Sidebar = () => {
                 style={{ display: "inline-block", marginRight: "12px" }}
                 className="ml-2"
               >
-                {isUser1Open ? "▼" : "▶"}
+                {isUser3Open ? "▼" : "▶"}
               </span>
               <p style={{ display: "inline-block", color: "white" }}> User3</p>
             </button>

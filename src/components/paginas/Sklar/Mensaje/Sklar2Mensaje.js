@@ -1,20 +1,18 @@
-//para modificar los datos
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import "../../../../css/globalMensaje.css";
 
 const Sklar2Mensaje = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
-  const { id, nombre, imagen, existencia, categoria, descripcion } = platillo;
+  const { id, nombre, imagen, existencia, categoria, descripcion, leido } = platillo;
 
-  // Estado para manejar el color basado en la disponibilidad
   const [disponibilidad, setDisponibilidad] = useState(existencia);
   const [editando, setEditando] = useState(false);
-
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
-
-  const [nuevaImagen, setNuevaImagen] = useState(null); // Estado para la nueva imagen
+  const [nuevaImagen, setNuevaImagen] = useState(null);
+  const [leidoState, setLeidoState] = useState(leido || false); // Estado para leído
 
   const actualizarDisponibilidad = () => {
     const nuevaExistencia = existenciaRef.current.value === "true";
@@ -38,22 +36,16 @@ const Sklar2Mensaje = ({ platillo }) => {
 
   const actualizarPlatillo = async () => {
     try {
-      let nuevaUrlImagen = imagen; // Usar la URL existente como predeterminada
-
-      // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
+      let nuevaUrlImagen = imagen;
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(
-          `sklarMensaje/${nuevaImagen.name}`
-        );
+        const imagenRef = storageRef.child(`sklarMensaje/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
-      // Actualizar el documento en la colección de Firebase
       await firebase.db.collection("sklarMensaje").doc(id).update({
         descripcion: nuevaDescripcion,
-
         imagen: nuevaUrlImagen,
       });
 
@@ -69,13 +61,36 @@ const Sklar2Mensaje = ({ platillo }) => {
     }
   };
 
+  const toggleLeido = async () => {
+    const nuevoLeido = !leidoState;
+    setLeidoState(nuevoLeido);
+    try {
+      await firebase.db.collection("sklarMensaje").doc(id).update({
+        leido: nuevoLeido,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = firebase.db.collection("sklarMensaje").doc(id)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          setLeidoState(data.leido);  // Actualiza el estado de leído en tiempo real
+        }
+      });
+  
+    return () => unsubscribe();
+  }, [firebase, id]);
+
   return (
     <div className="w-full px-3 mb-4">
       <div className="p-5 shadow-md bg-white">
         <div className="lg:flex">
           <div className="lg:w-5/12 xl:w-3/12">
-            <img src={imagen} alt="imagen platillo" />
-
+            <img src={imagen} alt={`Imagen de ${nombre}`} /> {/* Added alt prop */}
             <div className="sm:flex sm:-mx-2 pl-2">
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
@@ -118,6 +133,17 @@ const Sklar2Mensaje = ({ platillo }) => {
                   Mensaje enviado: {""}
                   <span className="text-gray-700 font-bold">{descripcion}</span>
                 </p>
+                <label>
+                  <input
+                    type="checkbox"
+                    className="custom-checkbox"
+                    checked={leidoState}
+                    onChange={toggleLeido}
+                  />
+                  {leidoState && (
+          <span className="ml-2 text-green-600 font-bold">Leído</span>
+        )}
+                </label>
               </div>
             )}
 
@@ -166,3 +192,4 @@ const Sklar2Mensaje = ({ platillo }) => {
 };
 
 export default Sklar2Mensaje;
+
