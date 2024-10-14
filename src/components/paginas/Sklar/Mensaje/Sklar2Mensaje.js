@@ -6,13 +6,23 @@ import "../../../../css/globalMensaje.css";
 const Sklar2Mensaje = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
-  const { id, nombre, imagen, existencia, categoria, descripcion, leido } = platillo;
+  const {
+    id,
+    nombre,
+    imagen,
+    existencia,
+    categoria,
+    descripcion,
+    leido,
+    fecha,
+  } = platillo;
 
   const [disponibilidad, setDisponibilidad] = useState(existencia);
   const [editando, setEditando] = useState(false);
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
   const [nuevaImagen, setNuevaImagen] = useState(null);
-  const [leidoState, setLeidoState] = useState(leido || false); // Estado para leído
+  const [nuevaFecha] = useState(fecha);
+  const [leidoState, setLeidoState] = useState(leido || false);
 
   const actualizarDisponibilidad = () => {
     const nuevaExistencia = existenciaRef.current.value === "true";
@@ -47,6 +57,7 @@ const Sklar2Mensaje = ({ platillo }) => {
       await firebase.db.collection("sklarMensaje").doc(id).update({
         descripcion: nuevaDescripcion,
         imagen: nuevaUrlImagen,
+        fecha: nuevaFecha,
       });
 
       setEditando(false);
@@ -74,23 +85,29 @@ const Sklar2Mensaje = ({ platillo }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = firebase.db.collection("sklarMensaje").doc(id)
+    const unsubscribe = firebase.db
+      .collection("sklarMensaje")
+      .doc(id)
       .onSnapshot((doc) => {
         if (doc.exists) {
           const data = doc.data();
-          setLeidoState(data.leido);  // Actualiza el estado de leído en tiempo real
+          setLeidoState(data.leido);
         }
       });
-  
+
     return () => unsubscribe();
   }, [firebase, id]);
 
   return (
-    <div className="w-full px-3 mb-4">
-      <div className="p-5 shadow-md bg-white">
+    <div className="w-full px-3 mb-4 relative" style={{ minHeight: "300px" }}>
+      <div className="p-5 shadow-md bg-white h-full relative">
+        <p className="text-gray-600 mb-4">
+          Fecha: {""}
+          <span className="text-gray-700 font-bold">{fecha}</span>
+        </p>
         <div className="lg:flex">
           <div className="lg:w-5/12 xl:w-3/12">
-            <img src={imagen} alt={`Imagen de ${nombre}`} /> {/* Added alt prop */}
+            <img src={imagen} alt={`Imagen de ${nombre}`} />
             <div className="sm:flex sm:-mx-2 pl-2">
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
@@ -108,7 +125,8 @@ const Sklar2Mensaje = ({ platillo }) => {
               </label>
             </div>
           </div>
-          <div className="lg:w-7/12 xl:w-9/12 pl-9">
+
+          <div className="lg:w-7/12 xl:w-9/12 pl-9 relative">
             {editando ? (
               <div>
                 <textarea
@@ -131,22 +149,12 @@ const Sklar2Mensaje = ({ platillo }) => {
                 </p>
                 <p className="text-gray-600 mb-4">
                   Mensaje enviado: {""}
-                  <span className="text-gray-700 font-bold">{descripcion}</span>
+                  <span className="text-gray-700 font-bold mensajeLimite">
+                    {descripcion}
+                  </span>
                 </p>
-                <label>
-                  <input
-                    type="checkbox"
-                    className="custom-checkbox"
-                    checked={leidoState}
-                    onChange={toggleLeido}
-                  />
-                  {leidoState && (
-          <span className="ml-2 text-green-600 font-bold">Leído</span>
-        )}
-                </label>
               </div>
             )}
-
             {/* Botones Save y Cancel */}
             {editando && (
               <div className="flex justify-end space-x-4 mb-4">
@@ -164,10 +172,23 @@ const Sklar2Mensaje = ({ platillo }) => {
                 </button>
               </div>
             )}
-
+            {/* Checkbox Leído */}
+            <div className="flex items-center mt-4"> {/* Flex para alinear los elementos */}
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={leidoState}
+                  disabled
+                />
+                {leidoState && (
+                  <span className="ml-2 text-green-600 font-bold">Leído</span>
+                )}
+              </label>
+            </div>
             {/* Botones Delete y Edit */}
             <div
-              className={`flex justify-end space-x-4 ${editando ? "mt-4" : ""}`}
+              className={`flex justify-end space-x-4 ${editando ? "mt-4" : "mt-6"}`} // Agregamos margen superior
             >
               <button
                 onClick={eliminarPedido}
@@ -193,3 +214,30 @@ const Sklar2Mensaje = ({ platillo }) => {
 
 export default Sklar2Mensaje;
 
+
+
+
+
+
+
+
+
+
+
+
+
+  {/* Checkbox Leído - Funciona de aqui para la app*/}
+            {/* <div className="absolute bottom-4 right-4"> 
+          <label className="flex items-center">
+            <input
+              type="checkbox"
+              className="custom-checkbox"
+              checked={leidoState}
+              onChange={toggleLeido}
+            />
+            {leidoState && (
+              <span className="ml-2 text-green-600 font-bold">Leído</span>
+            )}
+          </label>
+        </div> */}
+            

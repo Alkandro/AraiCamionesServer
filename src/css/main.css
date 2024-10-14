@@ -491,8 +491,14 @@ video {
 .relative {
   position: relative;
 }
+.bottom-4 {
+  bottom: 1rem;
+}
 .left-0 {
   left: 0px;
+}
+.right-4 {
+  right: 1rem;
 }
 .top-0 {
   top: 0px;
@@ -542,6 +548,9 @@ video {
 .mt-5 {
   margin-top: 1.25rem;
 }
+.mt-6 {
+  margin-top: 1.5rem;
+}
 .block {
   display: block;
 }
@@ -556,6 +565,9 @@ video {
 }
 .h-40 {
   height: 10rem;
+}
+.h-full {
+  height: 100%;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -763,6 +775,10 @@ video {
 .text-gray-800 {
   --tw-text-opacity: 1;
   color: rgb(31 41 55 / var(--tw-text-opacity));
+}
+.text-green-600 {
+  --tw-text-opacity: 1;
+  color: rgb(22 163 74 / var(--tw-text-opacity));
 }
 .text-red-600 {
   --tw-text-opacity: 1;

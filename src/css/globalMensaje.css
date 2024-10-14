@@ -25,4 +25,11 @@
     height: 100%;
     width: 100%;
   }
+  .mensajeLimite {
+    max-width: 100%; /* Limita el ancho del mensaje */
+    overflow-wrap: break-word; /* Permite que el texto largo se divida en la siguiente línea */
+    word-wrap: break-word; /* Para navegadores antiguos */
+    overflow: hidden; /* Oculta el desbordamiento */
+    text-overflow: ellipsis; /* Añade '...' para el texto que se desborda (opcional) */
+  }
   

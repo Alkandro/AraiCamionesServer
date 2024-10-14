@@ -15,6 +15,7 @@ const Sklar1Mensaje = () => {
   const [subiendo, guardarSubiendo] = useState(false);
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
+  
 
   // URL de imagen por defecto
   const imagenPorDefecto = imagenDefecto;
@@ -28,6 +29,7 @@ const Sklar1Mensaje = () => {
   // Orden para los días de la semana
   const categoria = {
     mensaje: "mensaje",
+    fecha: "fecha",
   };
 
   // Validación y manejo del formulario
@@ -36,12 +38,17 @@ const Sklar1Mensaje = () => {
       categoria: "mensaje",
       imagen: "",
       descripcion: "",
+      fecha:"",
     },
     validationSchema: Yup.object({
       descripcion: Yup.string()
         .min(1, "La descripción debe ser más larga")
         .max(1500, "La descripción no puede exceder los 1500 caracteres")
         .required("La descripción es obligatoria"),
+        fecha: Yup.date()
+        .required("La fecha es obligatoria")
+
+        .typeError("La fecha no es válida"), // Error si la fecha no tiene el formato correcto
     }),
     onSubmit: (platillo) => {
       try {
@@ -118,6 +125,33 @@ const Sklar1Mensaje = () => {
                 <p>{formik.errors.categoria} </p>
               </div>
             ) : null}
+              <div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="fecha"
+              >
+                Fecha
+              </label>
+              <input
+                className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                id="fecha"
+                type="date"
+                value={formik.values.fecha}
+                onChange={formik.handleChange}
+                onBlur={formik.handleBlur}
+              />
+            </div>
+
+            {formik.touched.fecha && formik.errors.fecha ? (
+              <div
+                className="bg-red-100 border-l-4 border-red-500 text-red-700 p-4 mb-5"
+                role="alert"
+              >
+                <p className="font-bold">Hubo un error:</p>
+                <p>{formik.errors.fecha} </p>
+              </div>
+            ) : null}
+
 
             <div className="mb-4">
               <label
@@ -135,6 +169,7 @@ const Sklar1Mensaje = () => {
                 onBlur={formik.handleBlur}
               ></textarea>
             </div>
+            
 
             {formik.touched.descripcion && formik.errors.descripcion ? (
               <div
@@ -145,6 +180,7 @@ const Sklar1Mensaje = () => {
                 <p>{formik.errors.descripcion} </p>
               </div>
             ) : null}
+          
 
             <div className="mb-4">
               <label
