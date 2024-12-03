@@ -61,25 +61,25 @@ const Sidebar = () => {
             {isHoshinoOpen && (
               <div className="pl-4">
                 <NavLink className={getLinkClassName} end to="/hoshino">
-                  Lunes
+                  　　月
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoMartes">
-                  Martes
+                  　　火
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoMiercoles">
-                  Miércoles
+                  　　火
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoJueves">
-                  Jueves
+                 　　 木
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoViernes">
-                  Viernes
+                 　　 金
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoSabado">
-                  Sábado
+                 　　 土
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoDomingo">
-                  Domingo
+                  　　日
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoMensaje">
                   Mensaje

@@ -6,14 +6,23 @@ import "../../../../css/globalMensaje.css";
 const Enrique2Mensaje = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
-  const { id, nombre, imagen, existencia, categoria, descripcion, leido } =
-    platillo;
+  const {
+    id,
+    nombre,
+    imagen,
+    existencia,
+    categoria,
+    descripcion,
+    leido,
+    fecha,
+  } = platillo;
 
   const [disponibilidad, setDisponibilidad] = useState(existencia);
   const [editando, setEditando] = useState(false);
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
   const [nuevaImagen, setNuevaImagen] = useState(null);
-  const [leidoState, setLeidoState] = useState(leido || false); // Estado para leído
+  const [nuevaFecha] = useState(fecha);
+  const [leidoState, setLeidoState] = useState(leido || false);
 
   const actualizarDisponibilidad = () => {
     const nuevaExistencia = existenciaRef.current.value === "true";
@@ -48,6 +57,7 @@ const Enrique2Mensaje = ({ platillo }) => {
       await firebase.db.collection("enriqueMensaje").doc(id).update({
         descripcion: nuevaDescripcion,
         imagen: nuevaUrlImagen,
+        fecha: nuevaFecha,
       });
 
       setEditando(false);
@@ -81,7 +91,7 @@ const Enrique2Mensaje = ({ platillo }) => {
       .onSnapshot((doc) => {
         if (doc.exists) {
           const data = doc.data();
-          setLeidoState(data.leido); // Actualiza el estado de leído en tiempo real
+          setLeidoState(data.leido);
         }
       });
 
@@ -90,9 +100,11 @@ const Enrique2Mensaje = ({ platillo }) => {
 
   return (
     <div className="w-full px-3 mb-4 relative" style={{ minHeight: "300px" }}>
-      {" "}
-      {/* Añadí minHeight */}
       <div className="p-5 shadow-md bg-white h-full relative">
+        <p className="text-gray-600 mb-4">
+          Fecha: {""}
+          <span className="text-gray-700 font-bold">{fecha}</span>
+        </p>
         <div className="lg:flex">
           <div className="lg:w-5/12 xl:w-3/12">
             <img src={imagen} alt={`Imagen de ${nombre}`} />
@@ -113,9 +125,8 @@ const Enrique2Mensaje = ({ platillo }) => {
               </label>
             </div>
           </div>
+
           <div className="lg:w-7/12 xl:w-9/12 pl-9 relative">
-            {" "}
-            {/* Aseguramos que este contenedor sea relativo */}
             {editando ? (
               <div>
                 <textarea
@@ -138,7 +149,9 @@ const Enrique2Mensaje = ({ platillo }) => {
                 </p>
                 <p className="text-gray-600 mb-4">
                   Mensaje enviado: {""}
-                  <span className="text-gray-700 font-bold">{descripcion}</span>
+                  <span className="text-gray-700 font-bold mensajeLimite">
+                    {descripcion}
+                  </span>
                 </p>
               </div>
             )}
@@ -159,9 +172,23 @@ const Enrique2Mensaje = ({ platillo }) => {
                 </button>
               </div>
             )}
+            {/* Checkbox Leído */}
+            <div className="flex items-center mt-4"> {/* Flex para alinear los elementos */}
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={leidoState}
+                  disabled
+                />
+                {leidoState && (
+                  <span className="ml-2 text-green-600 font-bold">Leído</span>
+                )}
+              </label>
+            </div>
             {/* Botones Delete y Edit */}
             <div
-              className={`flex justify-end space-x-4 ${editando ? "mt-4" : ""}`}
+              className={`flex justify-end space-x-4 ${editando ? "mt-4" : "mt-6"}`} // Agregamos margen superior
             >
               <button
                 onClick={eliminarPedido}
@@ -177,34 +204,6 @@ const Enrique2Mensaje = ({ platillo }) => {
                 <FaEdit className="mr-2 text-xl" />
                 EDIT
               </button>
-            </div>
-            {/* Checkbox Leído - Funciona de aqui para la app*/}
-            {/* <div className="absolute bottom-4 right-4"> 
-          <label className="flex items-center">
-            <input
-              type="checkbox"
-              className="custom-checkbox"
-              checked={leidoState}
-              onChange={toggleLeido}
-            />
-            {leidoState && (
-              <span className="ml-2 text-green-600 font-bold">Leído</span>
-            )}
-          </label>
-        </div> */}
-            {/* Checkbox Leído - Solo mostrar sin permitir modificación */}
-            <div className="absolute bottom-4 right-4">
-              <label className="flex items-center">
-                <input
-                  type="checkbox"
-                  className="custom-checkbox"
-                  checked={leidoState}
-                  disabled // Deshabilitar el checkbox para evitar cambios
-                />
-                {leidoState && (
-                  <span className="ml-2 text-green-600 font-bold">Leído</span>
-                )}
-              </label>
             </div>
           </div>
         </div>

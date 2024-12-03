@@ -1,20 +1,28 @@
 //para modificar los datos
-import React, { useContext, useRef, useState } from "react";
+import React, { useContext, useRef, useState, useEffect } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
 
 const Matsushima2Mensaje = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
   const { firebase } = useContext(FirebaseContext);
-  const { id, nombre, imagen, existencia, categoria, descripcion } = platillo;
+  const {
+    id,
+    nombre,
+    imagen,
+    existencia,
+    categoria,
+    descripcion,
+    leido,
+    fecha,
+  } = platillo;
 
-  // Estado para manejar el color basado en la disponibilidad
   const [disponibilidad, setDisponibilidad] = useState(existencia);
   const [editando, setEditando] = useState(false);
-
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
-
-  const [nuevaImagen, setNuevaImagen] = useState(null); // Estado para la nueva imagen
+  const [nuevaImagen, setNuevaImagen] = useState(null);
+  const [nuevaFecha] = useState(fecha);
+  const [leidoState, setLeidoState] = useState(leido || false);
 
   const actualizarDisponibilidad = () => {
     const nuevaExistencia = existenciaRef.current.value === "true";
@@ -38,23 +46,18 @@ const Matsushima2Mensaje = ({ platillo }) => {
 
   const actualizarPlatillo = async () => {
     try {
-      let nuevaUrlImagen = imagen; // Usar la URL existente como predeterminada
-
-      // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
+      let nuevaUrlImagen = imagen;
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
-        const imagenRef = storageRef.child(
-          `matsushimaMensaje/${nuevaImagen.name}`
-        );
+        const imagenRef = storageRef.child(`matsushimaMensaje/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
       }
 
-      // Actualizar el documento en la colección de Firebase
       await firebase.db.collection("matsushimaMensaje").doc(id).update({
         descripcion: nuevaDescripcion,
-
         imagen: nuevaUrlImagen,
+        fecha: nuevaFecha,
       });
 
       setEditando(false);
@@ -69,13 +72,42 @@ const Matsushima2Mensaje = ({ platillo }) => {
     }
   };
 
+  const toggleLeido = async () => {
+    const nuevoLeido = !leidoState;
+    setLeidoState(nuevoLeido);
+    try {
+      await firebase.db.collection("matsushimaMensaje").doc(id).update({
+        leido: nuevoLeido,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const unsubscribe = firebase.db
+      .collection("matsushimaMensaje")
+      .doc(id)
+      .onSnapshot((doc) => {
+        if (doc.exists) {
+          const data = doc.data();
+          setLeidoState(data.leido);
+        }
+      });
+
+    return () => unsubscribe();
+  }, [firebase, id]);
+
   return (
-    <div className="w-full px-3 mb-4">
-      <div className="p-5 shadow-md bg-white">
+    <div className="w-full px-3 mb-4 relative" style={{ minHeight: "300px" }}>
+      <div className="p-5 shadow-md bg-white h-full relative">
+        <p className="text-gray-600 mb-4">
+          Fecha: {""}
+          <span className="text-gray-700 font-bold">{fecha}</span>
+        </p>
         <div className="lg:flex">
           <div className="lg:w-5/12 xl:w-3/12">
-            <img src={imagen} alt="imagen platillo" />
-
+            <img src={imagen} alt={`Imagen de ${nombre}`} />
             <div className="sm:flex sm:-mx-2 pl-2">
               <label className="block mt-5 sm:w-2/4">
                 <span className="block text-gray-800 mb-2">Existencia</span>
@@ -93,7 +125,8 @@ const Matsushima2Mensaje = ({ platillo }) => {
               </label>
             </div>
           </div>
-          <div className="lg:w-7/12 xl:w-9/12 pl-9">
+
+          <div className="lg:w-7/12 xl:w-9/12 pl-9 relative">
             {editando ? (
               <div>
                 <textarea
@@ -116,11 +149,12 @@ const Matsushima2Mensaje = ({ platillo }) => {
                 </p>
                 <p className="text-gray-600 mb-4">
                   Mensaje enviado: {""}
-                  <span className="text-gray-700 font-bold">{descripcion}</span>
+                  <span className="text-gray-700 font-bold mensajeLimite">
+                    {descripcion}
+                  </span>
                 </p>
               </div>
             )}
-
             {/* Botones Save y Cancel */}
             {editando && (
               <div className="flex justify-end space-x-4 mb-4">
@@ -138,10 +172,23 @@ const Matsushima2Mensaje = ({ platillo }) => {
                 </button>
               </div>
             )}
-
+            {/* Checkbox Leído */}
+            <div className="flex items-center mt-4"> {/* Flex para alinear los elementos */}
+              <label className="flex items-center">
+                <input
+                  type="checkbox"
+                  className="custom-checkbox"
+                  checked={leidoState}
+                  disabled
+                />
+                {leidoState && (
+                  <span className="ml-2 text-green-600 font-bold">Leído</span>
+                )}
+              </label>
+            </div>
             {/* Botones Delete y Edit */}
             <div
-              className={`flex justify-end space-x-4 ${editando ? "mt-4" : ""}`}
+              className={`flex justify-end space-x-4 ${editando ? "mt-4" : "mt-6"}`} // Agregamos margen superior
             >
               <button
                 onClick={eliminarPedido}
