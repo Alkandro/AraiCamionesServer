@@ -35,8 +35,7 @@ const Sidebar = () => {
     } block hover:bg-yellow-500 hover:text-gray-900`;
 
   return (
-    
-    <div className="md:w-2/5 xl:w-1/5 bg-gray-800">
+    <div className="w-1/5 bg-gray-800 h-screen overflow-y-auto">
       <div className="p-6">
         <p className="uppercase text-white text-2xl tracking-wide text-center font-bold">
           株式会社 新井商運
@@ -44,7 +43,7 @@ const Sidebar = () => {
 
         <p className="mt-3 text-gray-600 text-center">Administrador</p>
 
-        <nav className="mt-1">
+        <nav className="mt-4">
           {/* Hoshino Dropdown */}
           <div>
             <button
@@ -61,25 +60,29 @@ const Sidebar = () => {
             {isHoshinoOpen && (
               <div className="pl-4">
                 <NavLink className={getLinkClassName} end to="/hoshino">
-                  　　月
+                  月
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoMartes">
-                  　　火
+                  火
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/hoshinoMiercoles">
-                  　　火
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/hoshinoMiercoles"
+                >
+                  火
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoJueves">
-                 　　 木
+                  木
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoViernes">
-                 　　 金
+                  金
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoSabado">
-                 　　 土
+                  土
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoDomingo">
-                  　　日
+                  日
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/hoshinoMensaje">
                   Mensaje
@@ -93,7 +96,9 @@ const Sidebar = () => {
             <button
               onClick={toggleMatsushimaDropdown}
               className={`p-3 block hover:bg-yellow-500 hover:text-gray-900 ${
-                isMatsushimaOpen ? "text-yellow-500 bg-gray-700" : "text-gray-400"
+                isMatsushimaOpen
+                  ? "text-yellow-500 bg-gray-700"
+                  : "text-gray-400"
               }`}
             >
               <span style={{ marginRight: "12px" }} className="ml-2">
@@ -106,25 +111,53 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/matsushima">
                   Lunes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaMartes">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaMartes"
+                >
                   Martes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaMiercoles">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaMiercoles"
+                >
                   Miércoles
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaJueves">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaJueves"
+                >
                   Jueves
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaViernes">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaViernes"
+                >
                   Viernes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaSabado">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaSabado"
+                >
                   Sábado
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaDomingo">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaDomingo"
+                >
                   Domingo
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/matsushimaMensaje">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/matsushimaMensaje"
+                >
                   Mensaje
                 </NavLink>
               </div>
@@ -152,7 +185,11 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/tomaokaMartes">
                   Martes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/tomaokaMiercoles">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/tomaokaMiercoles"
+                >
                   Miércoles
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/tomaokaJueves">
@@ -238,7 +275,11 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/okamotoMartes">
                   Martes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/okamotoMiercoles">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/okamotoMiercoles"
+                >
                   Miércoles
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/okamotoJueves">
@@ -281,7 +322,11 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/yamakadoMartes">
                   Martes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/yamakadoMiercoles">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/yamakadoMiercoles"
+                >
                   Miércoles
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/yamakadoJueves">
@@ -367,7 +412,11 @@ const Sidebar = () => {
                 <NavLink className={getLinkClassName} end to="/enriqueMartes">
                   Martes
                 </NavLink>
-                <NavLink className={getLinkClassName} end to="/enriqueMiercoles">
+                <NavLink
+                  className={getLinkClassName}
+                  end
+                  to="/enriqueMiercoles"
+                >
                   Miércoles
                 </NavLink>
                 <NavLink className={getLinkClassName} end to="/enriqueJueves">
@@ -389,8 +438,11 @@ const Sidebar = () => {
             )}
           </div>
           {/* Línea divisoria */}
-          <hr className="my-4 border-gray-600" style={{ borderTopWidth: '6px' }} />
-          
+          <hr
+            className="my-4 border-gray-600"
+            style={{ borderTopWidth: "6px" }}
+          />
+
           {/* User1 Dropdown */}
           <div>
             <button
@@ -527,14 +579,11 @@ const Sidebar = () => {
             )}
           </div>
 
-         
-
           {/* <NavLink className={getLinkClassName} end to="/">
             Órdenes
           </NavLink> */}
         </nav>
-        </div>
-    
+      </div>
     </div>
   );
 };

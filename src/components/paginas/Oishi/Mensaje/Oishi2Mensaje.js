@@ -1,7 +1,8 @@
-//para modificar los datos
+//Este codigo edita el mensaje 
 import React, { useContext, useRef, useState, useEffect } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import "../../../../css/globalMensaje.css";
 
 const Oishi2Mensaje = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
@@ -21,7 +22,7 @@ const Oishi2Mensaje = ({ platillo }) => {
   const [editando, setEditando] = useState(false);
   const [nuevaDescripcion, setNuevaDescripcion] = useState(descripcion);
   const [nuevaImagen, setNuevaImagen] = useState(null);
-  const [nuevaFecha] = useState(fecha);
+  const [nuevaFecha, setNuevaFecha] = useState(fecha);
   const [leidoState, setLeidoState] = useState(leido || false);
 
   const actualizarDisponibilidad = () => {
@@ -129,12 +130,29 @@ const Oishi2Mensaje = ({ platillo }) => {
           <div className="lg:w-7/12 xl:w-9/12 pl-9 relative">
             {editando ? (
               <div>
+                {/* Campo para descripción */}
+                <label className="block text-gray-700 font-bold mb-2">
+                    Mensaje:
+                  </label>
                 <textarea
                   className="mb-2 p-3 border border-gray-300 rounded w-full"
                   value={nuevaDescripcion}
                   onChange={(e) => setNuevaDescripcion(e.target.value)}
                   maxLength={1500}
                 ></textarea>
+
+                {/* Campo para editar fecha */}
+                <div className="mt-4">
+                  <label className="block text-gray-700 font-bold mb-2">
+                    Fecha:
+                  </label>
+                  <input
+                    type="date"
+                    className="p-3 border border-gray-300 rounded w-full"
+                    value={nuevaFecha}
+                    onChange={(e) => setNuevaFecha(e.target.value)}
+                  />
+                </div>
               </div>
             ) : (
               <div>
@@ -153,11 +171,15 @@ const Oishi2Mensaje = ({ platillo }) => {
                     {descripcion}
                   </span>
                 </p>
+                <p className="text-gray-600 mb-4">
+                  Fecha: {""}
+                  <span className="text-gray-700 font-bold">{fecha}</span>
+                </p>
               </div>
             )}
             {/* Botones Save y Cancel */}
             {editando && (
-              <div className="flex justify-end space-x-4 mb-4">
+              <div className="flex justify-end space-x-4 mt-6">
                 <button
                   onClick={actualizarPlatillo}
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
@@ -173,7 +195,7 @@ const Oishi2Mensaje = ({ platillo }) => {
               </div>
             )}
             {/* Checkbox Leído */}
-            <div className="flex items-center mt-4"> {/* Flex para alinear los elementos */}
+            <div className="flex items-center mt-4">
               <label className="flex items-center">
                 <input
                   type="checkbox"
@@ -188,7 +210,7 @@ const Oishi2Mensaje = ({ platillo }) => {
             </div>
             {/* Botones Delete y Edit */}
             <div
-              className={`flex justify-end space-x-4 ${editando ? "mt-4" : "mt-6"}`} // Agregamos margen superior
+              className={`flex justify-end space-x-4 ${editando ? "mt-4" : "mt-6"}`}
             >
               <button
                 onClick={eliminarPedido}
