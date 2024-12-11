@@ -20,6 +20,7 @@ import {
   User2Routes,
   User3Routes,
 } from "../src/components/ui/routes";
+import EditUserRoutes from "./components/ui/EditUserRoutes"; // Importar nueva ruta
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
             {User1Routes}
             {User2Routes}
             {User3Routes}
-
+            {EditUserRoutes} 
             <Route path="/nuevo-platillo" element={<NuevoPlatillo />} />
           </Routes>
         </div>

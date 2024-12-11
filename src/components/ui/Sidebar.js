@@ -43,6 +43,16 @@ const Sidebar = () => {
 
         <p className="mt-3 text-gray-600 text-center">Administrador</p>
 
+        {/* <div> */}
+          {/* Botón para editar usuario */}
+          {/* <button
+            onClick={() => (window.location.href = "/edit-user")}
+            className="p-3 block bg-blue-500 text-white rounded hover:bg-blue-700 hover:text-gray-100 mt-4 w-full"
+          >
+            Editar Usuarios
+          </button>
+        </div> */}
+
         <nav className="mt-4">
           {/* Hoshino Dropdown */}
           <div>
