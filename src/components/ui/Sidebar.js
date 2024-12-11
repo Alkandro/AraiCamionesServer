@@ -1,7 +1,18 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { NavLink } from "react-router-dom";
+import { FirebaseContext } from "../../firebase"; 
 
 const Sidebar = () => {
+   // Obtener firebase del contexto
+   const { firebase } = useContext(FirebaseContext);
+
+   // Obtener el usuario actual
+   const user = firebase.auth.currentUser; 
+   // 'user' contendrá información como user.email, user.uid, etc.
+   // Asegúrate de que el usuario está logueado antes de renderizarlo (condicional).
+
+
+
   // Estado separado para cada dropdown
   const [isHoshinoOpen, setIsHoshinoOpen] = useState(false);
   const [isMatsushimaOpen, setIsMatsushimaOpen] = useState(false);
@@ -42,6 +53,14 @@ const Sidebar = () => {
         </p>
 
         <p className="mt-3 text-gray-600 text-center">Administrador</p>
+        {/* Aquí mostramos el usuario autenticado */}
+        {user && (
+          <p className="mt-1 text-gray-400 text-center">
+            {user.displayName}
+          </p>
+        )}
+
+        
 
         {/* <div> */}
           {/* Botón para editar usuario */}
@@ -588,6 +607,15 @@ const Sidebar = () => {
               </div>
             )}
           </div>
+
+           {/* Al final del menú, el botón de logout */}
+           <hr className="my-4 border-t border-gray-600" />
+          <button
+            onClick={() => firebase.auth.signOut()}
+            className="p-3 block bg-gray-700 text-white rounded hover:bg-gray-900 hover:text-gray-100 mt-4 w-full text-center"
+          >
+            Cerrar Sesión
+          </button>
 
           {/* <NavLink className={getLinkClassName} end to="/">
             Órdenes
