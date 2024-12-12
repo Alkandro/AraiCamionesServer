@@ -16,6 +16,11 @@ const Sklar1 = () => {
   const [progreso, guardarProgreso] = useState(0);
   const [urlimagen, guardarUrlimagen] = useState("");
 
+  // Estados para el PDF
+  const [subiendoPdf, guardarSubiendoPdf] = useState(false);
+  const [progresoPdf, guardarProgresoPdf] = useState(0);
+  const [urlPdf, guardarUrlPdf] = useState("");
+
   // URL de imagen por defecto
   const imagenPorDefecto = imagenDefecto;
 
@@ -47,6 +52,7 @@ const Sklar1 = () => {
       imagen: "",
       descripcion: "",
       descripcion2: "",
+      pdf: ""
     },
     validationSchema: Yup.object({
       nombre: Yup.string()
@@ -82,6 +88,7 @@ const Sklar1 = () => {
         platillo.existencia = true;
         platillo.imagen = urlimagen || imagenPorDefecto; // Usa la imagen por defecto si no hay ninguna cargada
         platillo.orden = categoria[platillo.categoria.toLowerCase()];
+        platillo.pdf = urlPdf || ""; // Guardamos la URL del PDF si existe
 
         firebase.db.collection("sklar").add(platillo);
 
@@ -115,6 +122,30 @@ const Sklar1 = () => {
   };
   const handleProgress = (progreso) => {
     guardarProgreso(progreso);
+  };
+
+  // Manejo de PDFs
+  const handleUploadStartPdf = () => {
+    guardarProgresoPdf(0);
+    guardarSubiendoPdf(true);
+  };
+  const handleUploadErrorPdf = (error) => {
+    guardarSubiendoPdf(false);
+    console.log(error);
+  };
+  const handleUploadSuccessPdf = async (nombre) => {
+    guardarProgresoPdf(100);
+    guardarSubiendoPdf(false);
+
+    const url = await firebase.storage
+      .ref("sklar-pdfs") // Puedes cambiar la ruta a la carpeta que desees
+      .child(nombre)
+      .getDownloadURL();
+
+    guardarUrlPdf(url);
+  };
+  const handleProgressPdf = (progreso) => {
+    guardarProgresoPdf(progreso);
   };
 
   return (
@@ -313,6 +344,46 @@ const Sklar1 = () => {
                 <p>{formik.errors.descripcion2} </p>
               </div>
             ) : null}
+
+<div className="mb-4">
+              <label
+                className="block text-gray-700 text-sm font-bold mb-2"
+                htmlFor="pdf"
+              >
+                Documento PDF (opcional)
+              </label>
+              <FileUploader
+                accept="application/pdf"
+                id="pdf"
+                name="pdf"
+                randomizeFilename
+                storageRef={firebase.storage.ref("sklar-pdfs")} 
+                onUploadStart={handleUploadStartPdf}
+                onUploadError={handleUploadErrorPdf}
+                onUploadSuccess={handleUploadSuccessPdf}
+                onProgress={handleProgressPdf}
+              />
+            </div>
+
+            {subiendoPdf && (
+              <div className="h-12 relative w-full border mb-4">
+                <div
+                  className="bg-blue-500 absolute left-0 top-0 text-white px-2 text-sm h-12 flex items-center"
+                  style={{ width: `${progresoPdf}%` }}
+                >
+                  {progresoPdf} %
+                </div>
+              </div>
+            )}
+
+            {urlPdf && (
+              <p className="bg-blue-500 text-white p-3 text-center my-5">
+                El PDF se subió correctamente: 
+                <a href={urlPdf} target="_blank" rel="noopener noreferrer" className="underline ml-2">
+                  Ver PDF
+                </a>
+              </p>
+            )}
 
             <div className="mb-4">
               <label

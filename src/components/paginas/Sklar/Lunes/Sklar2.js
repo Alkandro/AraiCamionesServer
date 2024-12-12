@@ -2,6 +2,7 @@
 import React, { useContext, useRef, useState } from "react";
 import { FirebaseContext } from "../../../../firebase";
 import { FaTrash, FaEdit } from "react-icons/fa";
+import FileUploader from "react-firebase-file-uploader";
 
 const Sklar2 = ({ platillo }) => {
   const existenciaRef = useRef(platillo.existencia);
@@ -17,6 +18,7 @@ const Sklar2 = ({ platillo }) => {
     descripcion2,
     fecha,
     fecha2,
+    pdf, // Se agrega el campo pdf
   } = platillo;
 
   // Estado para manejar el color basado en la disponibilidad
@@ -30,6 +32,10 @@ const Sklar2 = ({ platillo }) => {
   const [nuevaFecha, setNuevaFecha] = useState(fecha);
   const [nuevaFecha2, setNuevaFecha2] = useState(fecha2);
   const [nuevaImagen, setNuevaImagen] = useState(null); // Estado para la nueva imagen
+  const [subiendoPdf, setSubiendoPdf] = useState(false);
+  const [progresoPdf, setProgresoPdf] = useState(0);
+  const [nuevaPdf, setNuevaPdf] = useState(null);
+  const [urlPdf, setUrlPdf] = useState(pdf || "");
 
   const actualizarDisponibilidad = () => {
     const nuevaExistencia = existenciaRef.current.value === "true";
@@ -54,13 +60,20 @@ const Sklar2 = ({ platillo }) => {
   const actualizarPlatillo = async () => {
     try {
       let nuevaUrlImagen = imagen; // Usar la URL existente como predeterminada
-
+      let nuevaUrlPdf = urlPdf; // Usar la URL existente del PDF
       // Si hay una nueva imagen seleccionada, subirla a Firebase Storage
       if (nuevaImagen) {
         const storageRef = firebase.storage.ref();
         const imagenRef = storageRef.child(`sklar/${nuevaImagen.name}`);
         await imagenRef.put(nuevaImagen);
         nuevaUrlImagen = await imagenRef.getDownloadURL();
+      }
+      // Si hay un nuevo PDF seleccionado, subirlo a Firebase Storage
+      if (nuevaPdf) {
+        const storageRef = firebase.storage.ref();
+        const pdfRef = storageRef.child(`sklar-pdfs/${nuevaPdf.name}`);
+        await pdfRef.put(nuevaPdf);
+        nuevaUrlPdf = await pdfRef.getDownloadURL();
       }
 
       // Actualizar el documento en la colección de Firebase
@@ -73,6 +86,7 @@ const Sklar2 = ({ platillo }) => {
         fecha: nuevaFecha,
         fecha2: nuevaFecha2,
         imagen: nuevaUrlImagen,
+        pdf: nuevaUrlPdf, // Actualizar la URL del PDF
       });
 
       setEditando(false);
@@ -84,6 +98,38 @@ const Sklar2 = ({ platillo }) => {
   const handleImageChange = (e) => {
     if (e.target.files.length > 0) {
       setNuevaImagen(e.target.files[0]);
+    }
+  };
+  // Handlers para el PDF
+  const handleUploadStartPdf = () => {
+    setProgresoPdf(0);
+    setSubiendoPdf(true);
+  };
+
+  const handleUploadErrorPdf = (error) => {
+    setSubiendoPdf(false);
+    console.log(error);
+  };
+
+  const handleUploadSuccessPdf = async (nombre) => {
+    setProgresoPdf(100);
+    setSubiendoPdf(false);
+
+    const url = await firebase.storage
+      .ref("sklar-pdfs")
+      .child(nombre)
+      .getDownloadURL();
+
+    setUrlPdf(url);
+  };
+
+  const handleProgressPdf = (progreso) => {
+    setProgresoPdf(progreso);
+  };
+
+  const handlePdfChange = (e) => {
+    if (e.target.files.length > 0) {
+      setNuevaPdf(e.target.files[0]);
     }
   };
 
@@ -165,6 +211,52 @@ const Sklar2 = ({ platillo }) => {
                   className="mb-4 p-3 border border-gray-300 rounded w-full"
                   onChange={handleImageChange}
                 />
+                 {/* Campo para seleccionar un nuevo PDF */}
+                 <div className="mb-4">
+                  <label
+                    className="block text-gray-700 text-sm font-bold mb-2"
+                    htmlFor="pdf"
+                  >
+                    Documento PDF (opcional)
+                  </label>
+                  <FileUploader
+                    accept="application/pdf"
+                    id="pdf"
+                    name="pdf"
+                    randomizeFilename
+                    storageRef={firebase.storage.ref("sklar-pdfs")}
+                    onUploadStart={handleUploadStartPdf}
+                    onUploadError={handleUploadErrorPdf}
+                    onUploadSuccess={handleUploadSuccessPdf}
+                    onProgress={handleProgressPdf}
+                  />
+                </div>
+
+                {subiendoPdf && (
+                  <div className="h-12 relative w-full border mb-4">
+                    <div
+                      className="bg-blue-500 absolute left-0 top-0 text-white px-2 text-sm h-12 flex items-center"
+                      style={{ width: `${progresoPdf}%` }}
+                    >
+                      {progresoPdf} %
+                    </div>
+                  </div>
+                )}
+
+                {urlPdf && (
+                  <p className="bg-blue-500 text-white p-3 text-center my-5">
+                    El PDF se subió correctamente:{" "}
+                    <a
+                      href={urlPdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline ml-2"
+                    >
+                      Ver PDF
+                    </a>
+                  </p>
+                )}
+
               </div>
             ) : (
               <div>
@@ -200,6 +292,20 @@ const Sklar2 = ({ platillo }) => {
                   Fecha de descarga: {""}
                   <span className="text-gray-700 font-bold">{fecha}</span>
                 </p>
+
+                {pdf && (
+                  <p className="text-gray-600 mb-4">
+                    Documento PDF:{" "}
+                    <a
+                      href={pdf}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-blue-700 underline font-bold"
+                    >
+                       PDF
+                    </a>
+                  </p>
+                )}
               </div>
             )}
 
